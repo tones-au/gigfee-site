@@ -9,10 +9,13 @@ be more than static HTML.
 
 ## What is here
 
+Served at **<https://gigfee.tones-au.com>**.
+
 | File | What it is |
 |---|---|
 | `index.html` | Landing page — what the app is, and links to the rest |
 | `privacy-policy.html` | The privacy policy, including the data deletion section |
+| `CNAME` | The custom domain. Deleting it drops the site back to the `github.io` URL and breaks every link on the Play listing. |
 
 ## Why the policy lives here rather than beside the app
 
@@ -28,8 +31,9 @@ the device, the policy edit belongs in this repository, in the same sitting.**
 
 | Console field | URL |
 |---|---|
-| Store listing → Privacy policy | `<pages-url>/privacy-policy.html` |
-| App content → Data deletion → Delete account URL | `<pages-url>/privacy-policy.html#delete-my-data` |
+| Store listing → Privacy policy | `https://gigfee.tones-au.com/privacy-policy.html` |
+| App content → Data deletion → Delete account URL | `https://gigfee.tones-au.com/privacy-policy.html#delete-my-data` |
+| Store presence → Website | `https://gigfee.tones-au.com/` |
 
 Both must stay reachable without an app install or a login — that is a Play
 requirement, not a preference.
