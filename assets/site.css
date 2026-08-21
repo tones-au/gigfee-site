@@ -1,0 +1,115 @@
+/* GigFee site shell: tokens, typography, masthead and footer.
+   Shared by index.html, privacy-policy.html and terms.html so the three
+   pages cannot drift apart. Page-specific layout stays in each page. */
+
+:root {
+  color-scheme: light dark;
+
+  --violet: #5b4be0;
+  --amber: #f0a02c;
+  --ink: #14141b;
+  --body: #3f3f4d;
+  --muted: #6b6b7b;
+  --page: #ffffff;
+  --panel: #f7f7fb;
+  --line: #e4e4ec;
+  --code: #f1f1f4;
+  --hero-from: #2b1f70;
+  --hero-to: #16122f;
+  --hero-ink: #ffffff;
+  --hero-body: #cfc9f2;
+  --shadow: rgba(20, 20, 27, 0.14);
+
+  --radius: 14px;
+  --shell: 68rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --violet: #a99cff;
+    --ink: #f0f0f6;
+    --body: #c3c3d0;
+    --muted: #9494a5;
+    --page: #121218;
+    --panel: #1a1a23;
+    --line: #2c2c38;
+    --code: #26262f;
+    --shadow: rgba(0, 0, 0, 0.5);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: Figtree, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--body);
+  background: var(--page);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { color: var(--ink); line-height: 1.2; margin: 0 0 0.6rem; }
+h1 { font-size: clamp(2.1rem, 5.2vw, 3.3rem); font-weight: 700; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.5rem, 3.2vw, 2rem); font-weight: 600; letter-spacing: -0.015em; }
+h3 { font-size: 1.2rem; font-weight: 600; }
+p { margin: 0 0 1rem; }
+a { color: var(--violet); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+img { max-width: 100%; height: auto; display: block; }
+ul { padding-left: 1.25rem; }
+
+.shell { max-width: var(--shell); margin: 0 auto; padding: 0 1.5rem; }
+
+/* Masthead */
+.masthead {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--page);
+  border-bottom: 1px solid var(--line);
+}
+.masthead .shell {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; padding-top: 0.85rem; padding-bottom: 0.85rem;
+}
+.brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+.brand img { width: 34px; height: 34px; border-radius: 9px; }
+.brand span { font-weight: 700; font-size: 1.2rem; color: var(--ink); letter-spacing: -0.01em; }
+.brand span b { color: var(--violet); font-weight: 700; }
+.masthead nav { display: flex; gap: 1.5rem; font-size: 0.97rem; font-weight: 500; }
+.masthead nav a { color: var(--muted); text-decoration: none; }
+.masthead nav a:hover { color: var(--violet); }
+@media (max-width: 34rem) { .masthead nav { display: none; } }
+
+/* Buttons */
+.btn {
+  display: inline-block; padding: 0.72rem 1.4rem; border-radius: 10px;
+  font-weight: 600; font-size: 1rem; text-decoration: none; border: 1px solid transparent;
+}
+
+/* Long-form document pages */
+.doc { max-width: 46rem; padding-top: 3rem; padding-bottom: 4rem; }
+.doc h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); }
+.doc h2 { font-size: 1.25rem; margin-top: 2.5rem; }
+.doc .updated { color: var(--muted); margin-top: 0; font-size: 0.95rem; }
+.doc .lede {
+  border-left: 3px solid var(--violet);
+  background: var(--panel);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1rem 1.25rem;
+  margin: 1.75rem 0;
+}
+.doc .lede strong { color: var(--ink); }
+.doc code {
+  background: var(--code); padding: 0.1rem 0.35rem;
+  border-radius: 4px; font-size: 0.92em;
+}
+
+/* Footer */
+footer { border-top: 1px solid var(--line); padding: 3rem 0; font-size: 0.94rem; color: var(--muted); }
+.foot-top { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; margin-bottom: 2rem; }
+.foot-links { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; }
+.foot-links a { color: var(--body); text-decoration: none; }
+.foot-links a:hover { color: var(--violet); text-decoration: underline; }
+.disclaimer { max-width: 46rem; margin: 0; }

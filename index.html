@@ -3,96 +3,315 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GigFee — tax invoicing for Australian musicians</title>
-<meta name="description" content="GigFee turns a gig into a tax-compliant invoice in under a minute. ABN, GST and superannuation handled.">
+<title>GigFee | Tax invoicing for Australian musicians</title>
+<meta name="description" content="GigFee turns a gig into a proper tax invoice from your phone. ABN, GST and superannuation handled, fee splits kept private, and your records stay on your device.">
+<link rel="icon" href="assets/gigfee-icon.png" type="image/png">
+<meta property="og:title" content="GigFee | Tax invoicing for Australian musicians">
+<meta property="og:description" content="The gig is done. The invoice takes a minute.">
+<meta property="og:image" content="assets/gigfee-icon.png">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
 <style>
-  :root { color-scheme: light dark; }
-  body {
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    line-height: 1.6;
-    max-width: 46rem;
-    margin: 0 auto;
-    padding: 3rem 1.25rem 5rem;
-    color: #14141b;
-    background: #fff;
+  /* Landing page layout. Shared tokens, typography, masthead, buttons and
+     footer live in assets/site.css. */
+
+  .hero {
+    background: linear-gradient(160deg, var(--hero-from), var(--hero-to));
+    color: var(--hero-body);
+    overflow: hidden;
   }
-  @media (prefers-color-scheme: dark) {
-    body { color: #e8e8ee; background: #14141b; }
-    a { color: #a99cff; }
-    .card { border-color: #33333f; }
+  .hero .shell {
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center;
+    padding-top: 4.5rem; padding-bottom: 4.5rem;
   }
-  h1 { font-size: 2.1rem; margin-bottom: 0.25rem; }
-  .tagline { color: #6b6b7b; margin-top: 0; font-size: 1.05rem; }
-  h2 { font-size: 1.15rem; margin-top: 2.5rem; }
-  a { color: #5b4be0; }
-  ul { padding-left: 1.25rem; }
-  .card {
-    border: 1px solid #e2e2e8;
-    border-radius: 10px;
-    padding: 1rem 1.25rem;
-    margin: 1.25rem 0;
+  .hero h1 { color: var(--hero-ink); }
+  .hero .lead { font-size: 1.16rem; max-width: 34rem; color: var(--hero-body); }
+  .eyebrow {
+    display: inline-block; font-size: 0.79rem; font-weight: 600;
+    letter-spacing: 0.09em; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 1rem;
   }
-  footer {
-    margin-top: 3.5rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid #e2e2e8;
-    color: #6b6b7b;
-    font-size: 0.92rem;
+  .hero-shot { justify-self: center; max-width: 300px; width: 100%; }
+  .hero-shot img { border-radius: 26px; box-shadow: 0 28px 60px rgba(0, 0, 0, 0.45); }
+  @media (max-width: 52rem) {
+    .hero .shell { grid-template-columns: 1fr; gap: 2.5rem; padding-top: 3rem; padding-bottom: 3rem; }
+    .hero-shot { max-width: 260px; }
   }
+
+  .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.6rem; }
+  .btn-primary { background: #ffffff; color: #2b1f70; }
+  .btn-primary:hover { background: #efedff; }
+  .btn-ghost { border-color: rgba(255, 255, 255, 0.34); color: #ffffff; }
+  .btn-ghost:hover { border-color: #ffffff; }
+
+  section { padding: 4.5rem 0; }
+  .section-head { max-width: 40rem; margin-bottom: 3rem; }
+  .section-head p { color: var(--muted); margin-bottom: 0; }
+
+  .feature {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3.5rem; align-items: center; margin-bottom: 4.5rem;
+  }
+  .feature:last-child { margin-bottom: 0; }
+  .feature.flip .feature-shot { order: -1; }
+  .feature-shot { justify-self: center; max-width: 280px; width: 100%; }
+  .feature-shot img {
+    border-radius: 22px; border: 1px solid var(--line);
+    box-shadow: 0 18px 40px var(--shadow);
+  }
+  .feature h3 { margin-bottom: 0.5rem; }
+  .feature p:last-child { margin-bottom: 0; }
+  @media (max-width: 52rem) {
+    .feature { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 3.5rem; }
+    .feature.flip .feature-shot { order: 0; }
+    .feature-shot { max-width: 240px; }
+  }
+
+  .tick { list-style: none; padding: 0; margin: 1.1rem 0 0; }
+  .tick li { position: relative; padding-left: 1.75rem; margin-bottom: 0.55rem; }
+  .tick li::before {
+    content: ""; position: absolute; left: 0; top: 0.62em;
+    width: 0.72rem; height: 0.38rem;
+    border-left: 2px solid var(--violet); border-bottom: 2px solid var(--violet);
+    transform: rotate(-45deg);
+  }
+
+  .panel { background: var(--panel); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .privacy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.25rem; margin-top: 2.5rem; }
+  .privacy-grid h3 { font-size: 1.05rem; margin-bottom: 0.35rem; }
+  .privacy-grid p { font-size: 0.98rem; color: var(--muted); margin-bottom: 0; }
+  .privacy-grid svg {
+    width: 26px; height: 26px; stroke: var(--violet); fill: none;
+    stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round;
+    margin-bottom: 0.7rem;
+  }
+  @media (max-width: 44rem) { .privacy-grid { grid-template-columns: 1fr; gap: 1.75rem; } }
+  .panel-note { margin-top: 2.5rem; margin-bottom: 0; }
+
+  .availability {
+    border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 2.25rem; background: var(--page);
+    display: grid; grid-template-columns: 64px 1fr; gap: 1.5rem; align-items: start;
+  }
+  .availability img { width: 64px; height: 64px; border-radius: 16px; }
+  .availability h2 { margin-bottom: 0.5rem; }
+  .availability p:last-of-type { margin-bottom: 0; }
+  @media (max-width: 40rem) { .availability { grid-template-columns: 1fr; padding: 1.75rem; } }
 </style>
 </head>
 <body>
 
-<h1>GigFee</h1>
-<p class="tagline">Tax invoicing for Australian musicians.</p>
+<header class="masthead">
+  <div class="shell">
+    <a class="brand" href="/">
+      <img src="assets/gigfee-icon.png" alt="">
+      <span>Gig<b>Fee</b></span>
+    </a>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#availability">Availability</a>
+      <a href="mailto:admin@tones-au.com">Support</a>
+    </nav>
+  </div>
+</header>
 
-<p>
-  GigFee turns a gig into a tax-compliant invoice in under a minute — the
-  correct Tax Invoice heading, ABN validation, GST worked out either way, and
-  superannuation for performers shown properly rather than guessed at.
-</p>
-
-<ul>
-  <li>Professional PDF invoices, emailed or shared from your phone</li>
-  <li>A gig diary that tells you what you are owed and what you have not
-      invoiced yet</li>
-  <li>Recurring invoices for residencies, and fee splits with your band</li>
-  <li>Due-date reminders, reports, and spreadsheet export</li>
-</ul>
-
-<div class="card">
-  <strong>Your data stays yours.</strong> GigFee works on your phone with no
-  sign-up and no account, and contains no analytics, advertising or tracking.
-  Cloud backup is optional, stored in Australia, and readable only by the
-  account you sign in with.
+<div class="hero">
+  <div class="shell">
+    <div>
+      <span class="eyebrow">Built for Australian musicians</span>
+      <h1>The gig is done. The invoice takes a minute.</h1>
+      <p class="lead">
+        GigFee raises a proper tax invoice from your phone, with the ABN checked,
+        the GST worked out and superannuation shown the way a performer's invoice
+        should show it. You can send it before you have packed the car.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#features">See what it does</a>
+        <a class="btn btn-ghost" href="#availability">How to get it</a>
+      </div>
+    </div>
+    <div class="hero-shot">
+      <picture>
+        <source srcset="assets/screen-dashboard.webp" type="image/webp">
+        <img src="assets/screen-dashboard.png" width="640" height="1138"
+             alt="The GigFee home screen showing money owed, the next gig and projected earnings.">
+      </picture>
+    </div>
+  </div>
 </div>
 
-<h2>Privacy</h2>
+<section id="features">
+  <div class="shell">
+    <div class="section-head">
+      <h2>Made for the way gigs actually work</h2>
+      <p>
+        Every part of GigFee came from a real piece of paperwork that musicians
+        end up doing at midnight, on a phone, in a car park.
+      </p>
+    </div>
 
-<p>
-  <a href="privacy-policy.html">Read the privacy policy</a> — what stays on
-  your device, what leaves it if you ask it to, and where it is stored.
-</p>
+    <div class="feature">
+      <div>
+        <h3>Invoices that hold up</h3>
+        <p>
+          An invoice a venue's bookkeeper can pay without sending it back. GigFee
+          gets the details right so you do not have to keep them in your head.
+        </p>
+        <ul class="tick">
+          <li>Correct Tax Invoice heading, with your ABN checked as you type</li>
+          <li>GST handled whether your prices include it or not</li>
+          <li>Superannuation for performers shown properly rather than guessed at</li>
+          <li>A professional PDF, emailed or shared straight from your phone</li>
+        </ul>
+      </div>
+      <div class="feature-shot">
+        <picture>
+          <source srcset="assets/screen-reports.webp" type="image/webp">
+          <img src="assets/screen-reports.png" width="640" height="1138"
+               alt="The reports screen showing outstanding, overdue, paid and invoiced totals for the financial year.">
+        </picture>
+      </div>
+    </div>
 
-<h2>Deleting your data</h2>
+    <div class="feature flip">
+      <div>
+        <h3>Split a fee without airing it</h3>
+        <p>
+          Divide a night's money between the band equally, by percentage, or by
+          set amounts. The client is still billed once for the full fee, and none
+          of the split appears on the invoice they receive.
+        </p>
+        <p>
+          GigFee keeps track of who you still owe, so money that only passed
+          through your account on its way to someone else does not end up counted
+          as your income.
+        </p>
+      </div>
+      <div class="feature-shot">
+        <picture>
+          <source srcset="assets/screen-split.webp" type="image/webp">
+          <img src="assets/screen-split.png" width="640" height="1138"
+               alt="The fee split screen dividing a $1,200 fee four ways between band members.">
+        </picture>
+      </div>
+    </div>
 
-<p>
-  If you used cloud backup and want everything removed, the steps are here:
-  <a href="privacy-policy.html#delete-my-data">delete your data and your
-  account</a>. You can do it from inside the app in four taps, or by emailing
-  us if you no longer have it.
-</p>
+    <div class="feature">
+      <div>
+        <h3>Know what you are owed</h3>
+        <p>
+          A gig diary that carries through to the money. Bring bookings in from
+          your phone's calendar, see what is coming up, and find the gigs you
+          played but never invoiced.
+        </p>
+        <ul class="tick">
+          <li>Projected earnings for the month or the financial year</li>
+          <li>Due date reminders, so chasing is not left to memory</li>
+          <li>Recurring invoices for a residency</li>
+          <li>Reports and spreadsheet export your accountant can work from</li>
+        </ul>
+      </div>
+      <div class="feature-shot">
+        <picture>
+          <source srcset="assets/screen-gigs.webp" type="image/webp">
+          <img src="assets/screen-gigs.png" width="640" height="1138"
+               alt="The gig diary showing bookings ahead and gigs played but not yet invoiced.">
+        </picture>
+      </div>
+    </div>
+  </div>
+</section>
 
-<h2>Support</h2>
+<section id="privacy" class="panel">
+  <div class="shell">
+    <div class="section-head">
+      <h2>Your books stay yours</h2>
+      <p>
+        Your invoices carry your clients' details and everything you earn. That is
+        not something to hand over lightly, so GigFee is built not to ask for it.
+      </p>
+    </div>
 
-<p>
-  Questions, problems, or a feature you wish it had:
-  <a href="mailto:admin@tones-au.com">admin@tones-au.com</a>
-</p>
+    <div class="privacy-grid">
+      <div>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"/></svg>
+        <h3>No account required</h3>
+        <p>
+          Install it and start invoicing. There is no sign-up, and you can use
+          GigFee for years without ever telling us who you are.
+        </p>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3 7 4-14 3 7h4"/></svg>
+        <h3>No tracking</h3>
+        <p>
+          No analytics, no advertising and no third party trackers. Nothing in
+          here watches how you use it.
+        </p>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 10V8a6 6 0 0 1 12 0v2"/><rect x="4" y="10" width="16" height="10" rx="2"/></svg>
+        <h3>Backup is your choice</h3>
+        <p>
+          Cloud backup stays off until you turn it on. When you do, the copy is
+          stored in Australia and readable only by the account you signed in with.
+        </p>
+      </div>
+    </div>
+
+    <p class="panel-note">
+      The full detail is in the <a href="privacy-policy.html">privacy policy</a>,
+      including <a href="privacy-policy.html#delete-my-data">how to delete everything</a>
+      if you decide you are done.
+    </p>
+  </div>
+</section>
+
+<section id="availability">
+  <div class="shell">
+    <div class="availability">
+      <img src="assets/gigfee-icon.png" alt="">
+      <div>
+        <h2>Coming to Google Play</h2>
+        <p>
+          GigFee is being tested by a small group of working musicians while the
+          last of the release checks are finished. It is not on the store yet.
+        </p>
+        <p>
+          If you play for a living in Australia and want to try it before it goes
+          public, or you would rather just hear about it on release day, email
+          <a href="mailto:admin@tones-au.com?subject=GigFee%20early%20access">admin@tones-au.com</a>
+          and we will sort it out.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <footer>
-  GigFee provides general information about tax and superannuation, not
-  financial or tax advice. Check your own circumstances with your accountant.
+  <div class="shell">
+    <div class="foot-top">
+      <a class="brand" href="/">
+        <img src="assets/gigfee-icon.png" alt="">
+        <span>Gig<b>Fee</b></span>
+      </a>
+      <div class="foot-links">
+        <a href="#features">Features</a>
+        <a href="privacy-policy.html">Privacy policy</a>
+        <a href="terms.html">Terms of use</a>
+        <a href="mailto:admin@tones-au.com">admin@tones-au.com</a>
+      </div>
+    </div>
+    <p class="disclaimer">
+      GigFee gives general information about tax and superannuation. It is not
+      financial or tax advice, and it is no substitute for an accountant who knows
+      your circumstances. Published by Tones AU.
+    </p>
+  </div>
 </footer>
 
 </body>
