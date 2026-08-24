@@ -29,13 +29,12 @@
   }
   .hero h1 { color: var(--hero-ink); }
   .hero .lead { font-size: 1.16rem; max-width: 34rem; color: var(--hero-body); }
-  .eyebrow {
-    display: inline-block; font-size: 0.79rem; font-weight: 600;
-    letter-spacing: 0.09em; text-transform: uppercase;
-    color: var(--amber); margin-bottom: 1rem;
-  }
   .hero-shot { justify-self: center; max-width: 300px; width: 100%; }
-  .hero-shot img { border-radius: 26px; box-shadow: 0 28px 60px rgba(0, 0, 0, 0.45); }
+  .hero-shot img {
+    border-radius: 26px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+  }
   @media (max-width: 52rem) {
     .hero .shell { grid-template-columns: 1fr; gap: 2.5rem; padding-top: 3rem; padding-bottom: 3rem; }
     .hero-shot { max-width: 260px; }
@@ -80,15 +79,16 @@
   }
 
   .panel { background: var(--panel); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .privacy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.25rem; margin-top: 2.5rem; }
-  .privacy-grid h3 { font-size: 1.05rem; margin-bottom: 0.35rem; }
-  .privacy-grid p { font-size: 0.98rem; color: var(--muted); margin-bottom: 0; }
-  .privacy-grid svg {
-    width: 26px; height: 26px; stroke: var(--violet); fill: none;
-    stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round;
-    margin-bottom: 0.7rem;
+  .plainly { margin: 0; max-width: 44rem; }
+  .plainly dt {
+    font-weight: 600; color: var(--ink); font-size: 1.05rem;
+    margin-top: 1.75rem;
   }
-  @media (max-width: 44rem) { .privacy-grid { grid-template-columns: 1fr; gap: 1.75rem; } }
+  .plainly dt:first-of-type { margin-top: 0; }
+  .plainly dd {
+    margin: 0.3rem 0 0; color: var(--muted); max-width: 40rem;
+  }
+
   .panel-note { margin-top: 2.5rem; margin-bottom: 0; }
 
   /* Google Play badge.
@@ -156,12 +156,12 @@
 <div class="hero">
   <div class="shell">
     <div>
-      <span class="eyebrow">Built for Australian musicians</span>
       <h1>The gig is done. The invoice takes a minute.</h1>
       <p class="lead">
-        GigFee raises a proper tax invoice from your phone, with the ABN checked,
-        the GST worked out and superannuation shown the way a performer's invoice
-        should show it. You can send it before you have packed the car.
+        Built for Australian musicians. GigFee raises a proper tax invoice
+        from your phone, with the ABN checked, the GST worked out and
+        superannuation shown the way a performer's invoice should show it. You
+        can send it before you have packed the car.
       </p>
       <div class="actions">
         <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.stagefee.stagefee">
@@ -173,7 +173,7 @@
     <div class="hero-shot">
       <picture>
         <source srcset="assets/screen-dashboard.webp" type="image/webp">
-        <img src="assets/screen-dashboard.png" width="640" height="1138"
+        <img src="assets/screen-dashboard.png" width="640" height="1357"
              alt="The GigFee home screen showing money owed, the next gig and projected earnings.">
       </picture>
     </div>
@@ -207,7 +207,7 @@
       <div class="feature-shot">
         <picture>
           <source srcset="assets/screen-reports.webp" type="image/webp">
-          <img src="assets/screen-reports.png" width="640" height="1138"
+          <img src="assets/screen-reports.png" width="640" height="1357"
                alt="The reports screen showing outstanding, overdue, paid and invoiced totals for the financial year.">
         </picture>
       </div>
@@ -230,7 +230,7 @@
       <div class="feature-shot">
         <picture>
           <source srcset="assets/screen-split.webp" type="image/webp">
-          <img src="assets/screen-split.png" width="640" height="1138"
+          <img src="assets/screen-split.png" width="640" height="1357"
                alt="The fee split screen dividing a $1,200 fee four ways between band members.">
         </picture>
       </div>
@@ -254,7 +254,7 @@
       <div class="feature-shot">
         <picture>
           <source srcset="assets/screen-gigs.webp" type="image/webp">
-          <img src="assets/screen-gigs.png" width="640" height="1138"
+          <img src="assets/screen-gigs.png" width="640" height="1357"
                alt="The gig diary showing bookings ahead and gigs played but not yet invoiced.">
         </picture>
       </div>
@@ -264,7 +264,7 @@
 
 <div class="shell">
   <div class="midway-cta">
-    <p>Ready to stop writing invoices by hand?</p>
+    <p>Free to start. No account, no card.</p>
     <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.stagefee.stagefee">
       <img src="assets/google-play-badge.png" alt="Get it on Google Play" width="646" height="250">
     </a>
@@ -281,32 +281,27 @@
       </p>
     </div>
 
-    <div class="privacy-grid">
-      <div>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"/></svg>
-        <h3>No account required</h3>
-        <p>
-          Install it and start invoicing. There is no sign-up, and you can use
-          GigFee for years without ever telling us who you are.
-        </p>
-      </div>
-      <div>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3 7 4-14 3 7h4"/></svg>
-        <h3>No tracking</h3>
-        <p>
-          No analytics, no advertising and no third party trackers. Nothing in
-          here watches how you use it.
-        </p>
-      </div>
-      <div>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 10V8a6 6 0 0 1 12 0v2"/><rect x="4" y="10" width="16" height="10" rx="2"/></svg>
-        <h3>Backup is your choice</h3>
-        <p>
-          Cloud backup stays off until you turn it on. When you do, the copy is
-          stored in Australia and readable only by the account you signed in with.
-        </p>
-      </div>
-    </div>
+    <dl class="plainly">
+      <dt>No account</dt>
+      <dd>
+        Install it and start invoicing. There is no sign-up, and you can use
+        GigFee for years without ever telling us who you are.
+      </dd>
+
+      <dt>No tracking</dt>
+      <dd>
+        No analytics, no advertising, no third party trackers. Nothing in here
+        watches how you use it.
+      </dd>
+
+      <dt>Backup is yours to switch on</dt>
+      <dd>
+        Cloud backup stays off until you turn it on. When you do, the copy is
+        stored in Australia and readable only by the account you signed in
+        with. Your phone also keeps its own copy through Android's backup,
+        which is covered in the policy.
+      </dd>
+    </dl>
 
     <p class="panel-note">
       The full detail is in the <a href="privacy-policy.html">privacy policy</a>,
