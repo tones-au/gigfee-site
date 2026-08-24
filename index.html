@@ -91,12 +91,46 @@
   @media (max-width: 44rem) { .privacy-grid { grid-template-columns: 1fr; gap: 1.75rem; } }
   .panel-note { margin-top: 2.5rem; margin-bottom: 0; }
 
+  /* Google Play badge.
+     Google's brand guidelines require the supplied asset unmodified, with
+     clear space around it and a minimum height, so it is sized rather than
+     restyled: no border, no filter, no recolour. 40px tall is comfortably
+     above the 40dp floor. The link wrapper carries the tap target. */
+  .play-badge {
+    display: inline-block;
+    line-height: 0;
+    border-radius: 8px;
+  }
+  .play-badge img {
+    height: 54px; width: auto;
+  }
+  .play-badge:focus-visible {
+    outline: 2px solid var(--amber); outline-offset: 3px;
+  }
+  .actions .play-badge img { height: 58px; }
+  .actions { align-items: center; }
+
+  /* The second ask, placed where somebody has just finished reading what the
+     app does and is deciding. */
+  .midway-cta {
+    display: flex; flex-wrap: wrap; gap: 1.25rem;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 0 0 4.5rem;
+  }
+  .midway-cta p {
+    margin: 0; font-size: 1.15rem; font-weight: 600; color: var(--ink);
+  }
+
+  .availability .play-badge { margin: 0.5rem 0 1rem; }
+  .fineprint { font-size: 0.95rem; color: var(--muted); }
+
   .availability {
     border: 1px solid var(--line); border-radius: var(--radius);
     padding: 2.25rem; background: var(--page);
     display: grid; grid-template-columns: 64px 1fr; gap: 1.5rem; align-items: start;
   }
-  .availability img { width: 64px; height: 64px; border-radius: 16px; }
+  .availability > img { width: 64px; height: 64px; border-radius: 16px; }
   .availability h2 { margin-bottom: 0.5rem; }
   .availability p:last-of-type { margin-bottom: 0; }
   @media (max-width: 40rem) { .availability { grid-template-columns: 1fr; padding: 1.75rem; } }
@@ -113,7 +147,7 @@
     <nav>
       <a href="#features">Features</a>
       <a href="#privacy">Privacy</a>
-      <a href="#availability">Availability</a>
+      <a href="#get">Get the app</a>
       <a href="mailto:admin@tones-au.com">Support</a>
     </nav>
   </div>
@@ -130,8 +164,10 @@
         should show it. You can send it before you have packed the car.
       </p>
       <div class="actions">
-        <a class="btn btn-primary" href="#features">See what it does</a>
-        <a class="btn btn-ghost" href="#availability">How to get it</a>
+        <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.stagefee.stagefee">
+          <img src="assets/google-play-badge.png" alt="Get it on Google Play" width="646" height="250">
+        </a>
+        <a class="btn btn-ghost" href="#features">See what it does</a>
       </div>
     </div>
     <div class="hero-shot">
@@ -226,6 +262,15 @@
   </div>
 </section>
 
+<div class="shell">
+  <div class="midway-cta">
+    <p>Ready to stop writing invoices by hand?</p>
+    <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.stagefee.stagefee">
+      <img src="assets/google-play-badge.png" alt="Get it on Google Play" width="646" height="250">
+    </a>
+  </div>
+</div>
+
 <section id="privacy" class="panel">
   <div class="shell">
     <div class="section-head">
@@ -271,21 +316,23 @@
   </div>
 </section>
 
-<section id="availability">
+<section id="get">
   <div class="shell">
     <div class="availability">
       <img src="assets/gigfee-icon.png" alt="">
       <div>
-        <h2>Coming to Google Play</h2>
+        <h2>Get GigFee</h2>
         <p>
-          GigFee is being tested by a small group of working musicians while the
-          last of the release checks are finished. It is not on the store yet.
+          Free to use for as long as you like, with no account and no card.
+          Every invoice, no limits. The ones you send carry a GigFee watermark
+          until you decide to remove it.
         </p>
-        <p>
-          If you play for a living in Australia and want to try it before it goes
-          public, or you would rather just hear about it on release day, email
-          <a href="mailto:admin@tones-au.com?subject=GigFee%20early%20access">admin@tones-au.com</a>
-          and we will sort it out.
+        <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.stagefee.stagefee">
+          <img src="assets/google-play-badge.png" alt="Get it on Google Play" width="646" height="250">
+        </a>
+        <p class="fineprint">
+          Android phones and tablets. Australian tax rules, so it is built for
+          people invoicing in Australia.
         </p>
       </div>
     </div>
@@ -300,6 +347,7 @@
         <span>Gig<b>Fee</b></span>
       </a>
       <div class="foot-links">
+        <a href="https://play.google.com/store/apps/details?id=com.stagefee.stagefee">Google Play</a>
         <a href="#features">Features</a>
         <a href="privacy-policy.html">Privacy policy</a>
         <a href="terms.html">Terms of use</a>
