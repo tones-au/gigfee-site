@@ -116,3 +116,4 @@ footer { border-top: 1px solid var(--line); padding: 3rem 0; font-size: 0.94rem;
 .foot-links a { color: var(--body); text-decoration: none; }
 .foot-links a:hover { color: var(--violet); text-decoration: underline; }
 .disclaimer { max-width: 46rem; margin: 0; }
+.copyright { margin-top: 0.75rem; font-size: 0.88rem; }
