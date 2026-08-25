@@ -1,0 +1,7 @@
+# https://gigfee.tones-au.com/
+# Everything here is public. Nothing is disallowed.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://gigfee.tones-au.com/sitemap.xml
