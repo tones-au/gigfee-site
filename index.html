@@ -9,6 +9,7 @@
 <link rel="icon" href="/assets/favicon-96.png" type="image/png" sizes="96x96">
 <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/assets/favicon-192.png">
+<meta name="theme-color" content="#2b1f70">
 <link rel="canonical" href="https://gigfee.tones-au.com/">
 <meta property="og:title" content="GigFee | Tax invoicing for Australian musicians">
 <meta property="og:description" content="Invoice a gig from your phone in about a minute. ABN and GST on the invoice, super tracked, band splits kept private. Free on Android.">
@@ -28,6 +29,50 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://gigfee.tones-au.com/#website",
+      "name": "GigFee",
+      "alternateName": "GigFee by Tones AU",
+      "url": "https://gigfee.tones-au.com/",
+      "description": "Tax invoicing for Australian musicians. ABN and GST on the invoice, superannuation tracked, band splits kept private.",
+      "inLanguage": "en-AU",
+      "publisher": { "@id": "https://gigfee.tones-au.com/#organisation" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://gigfee.tones-au.com/#organisation",
+      "name": "Tones AU",
+      "alternateName": "GigFee",
+      "url": "https://gigfee.tones-au.com/",
+      "email": "admin@tones-au.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://gigfee.tones-au.com/assets/gigfee-icon.png",
+        "width": 512,
+        "height": 512
+      },
+      "image": "https://gigfee.tones-au.com/assets/og-card.png",
+      "founder": { "@type": "Person", "name": "Anthony Collins" },
+      "areaServed": { "@type": "Country", "name": "Australia" },
+      "sameAs": [
+        "https://play.google.com/store/apps/details?id=com.stagefee.stagefee"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://gigfee.tones-au.com/#webpage",
+      "url": "https://gigfee.tones-au.com/",
+      "name": "GigFee | Tax invoicing for Australian musicians",
+      "description": "Invoice a gig from your phone in about a minute. ABN and GST on the invoice, super tracked, band splits kept private. Free on Android.",
+      "isPartOf": { "@id": "https://gigfee.tones-au.com/#website" },
+      "about": { "@id": "https://gigfee.tones-au.com/#app" },
+      "primaryImageOfPage": "https://gigfee.tones-au.com/assets/og-card.png",
+      "inLanguage": "en-AU"
+    },
+    {
+      "@id": "https://gigfee.tones-au.com/#app",
   "@type": "SoftwareApplication",
   "name": "GigFee",
   "url": "https://gigfee.tones-au.com/",
@@ -77,6 +122,9 @@
       "priceCurrency": "AUD",
       "description": "Monthly, free for the first 7 days. Cloud backup, reports and spreadsheet export, your logo on invoices, and the super ledger.",
       "category": "subscription"
+    }
+  ],
+      "publisher": { "@id": "https://gigfee.tones-au.com/#organisation" }
     }
   ]
 }
@@ -213,6 +261,7 @@
       <span>Gig<b>Fee</b></span>
     </a>
     <nav>
+      <a href="/guides/">Guides</a>
       <a href="#features">Features</a>
       <a href="#privacy">Privacy</a>
       <a href="#get">Get the app</a>
@@ -379,6 +428,52 @@
   </div>
 </section>
 
+<section id="guides">
+  <div class="shell">
+    <div class="section-head">
+      <h2>The super rules changed on 1 July. Here is what that means for you.</h2>
+      <p>
+        Since payday super started, the money owed on your gigs has to be in
+        your fund within seven business days. We wrote the explanations we kept
+        being asked for, with the sums worked through and the sources named.
+      </p>
+    </div>
+
+    <ul class="guide-grid">
+      <li class="guide-card">
+        <img src="assets/cards/payday-super-for-musicians-16x9.png" width="1200" height="675"
+             alt="Payday super, explained for people who play for a living.">
+        <div class="body">
+          <h3><a href="/guides/payday-super-for-musicians/">Payday super, explained for people who play for a living</a></h3>
+          <p>What changed, who owes it, and what it does to a $300 pub gig.</p>
+        </div>
+      </li>
+      <li class="guide-card">
+        <img src="assets/cards/super-out-of-your-fee-16x9.png" width="1200" height="675"
+             alt="The venue is taking 12% out of your fee.">
+        <div class="body">
+          <h3><a href="/guides/super-out-of-your-fee/">The venue is taking 12% out of your fee</a></h3>
+          <p>When that is a renegotiation, and when it is a short payment.</p>
+        </div>
+      </li>
+      <li class="guide-card">
+        <img src="assets/cards/band-leader-super-and-splits-16x9.png" width="1200" height="675"
+             alt="You invoice for the whole band. Who owes the super?">
+        <div class="body">
+          <h3><a href="/guides/band-leader-super-and-splits/">You invoice for the whole band. Who owes the super?</a></h3>
+          <p>Super lands twice on the same money, and the leader wears it.</p>
+        </div>
+      </li>
+    </ul>
+
+    <p class="panel-note">
+      <a href="/guides/">All five guides</a>, including what a venue needs from
+      you before it can pay your super, and how sole traders, partnerships and
+      companies are each treated.
+    </p>
+  </div>
+</section>
+
 <section id="get">
   <div class="shell">
     <div class="availability">
@@ -417,6 +512,7 @@
         <span>Gig<b>Fee</b></span>
       </a>
       <div class="foot-links">
+        <a href="/guides/">Guides</a>
         <a href="https://play.google.com/store/apps/details?id=com.stagefee.stagefee">Google Play</a>
         <a href="#features">Features</a>
         <a href="privacy-policy.html">Privacy policy</a>

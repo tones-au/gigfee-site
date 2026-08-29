@@ -117,3 +117,157 @@ footer { border-top: 1px solid var(--line); padding: 3rem 0; font-size: 0.94rem;
 .foot-links a:hover { color: var(--violet); text-decoration: underline; }
 .disclaimer { max-width: 46rem; margin: 0; }
 .copyright { margin-top: 0.75rem; font-size: 0.88rem; }
+
+/* ------------------------------------------------------------------ *
+ * Guides
+ *
+ * The long-form pages under /guides/. They reuse the masthead, footer
+ * and tokens above; everything here is the reading column and the
+ * furniture that only appears inside an article.
+ * ------------------------------------------------------------------ */
+
+.article { max-width: 44rem; padding: 2.5rem 0 4rem; }
+
+.kicker {
+  font-size: 0.82rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--amber); margin: 0 0 0.9rem;
+}
+
+.article h1 { font-size: clamp(1.9rem, 4.4vw, 2.7rem); margin-bottom: 1rem; }
+.article h2 {
+  font-size: clamp(1.3rem, 2.6vw, 1.6rem); margin-top: 3rem; margin-bottom: 0.8rem;
+}
+.article h3 { margin-top: 2rem; }
+.article > p, .article > ul, .article > ol { font-size: 1.09rem; }
+
+.dek {
+  font-size: 1.22rem; line-height: 1.5; color: var(--ink);
+  font-weight: 500; margin-bottom: 1.5rem;
+}
+
+.byline {
+  display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: center;
+  font-size: 0.92rem; color: var(--muted);
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  padding: 0.85rem 0; margin-bottom: 2.25rem;
+}
+.byline b { color: var(--body); font-weight: 600; }
+
+.article-figure { margin: 0 0 2.5rem; }
+.article-figure img { border-radius: var(--radius); border: 1px solid var(--line); }
+
+/* On this page. Short enough to scan, long enough to be worth having. */
+.toc {
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 1.25rem 1.5rem; margin: 2rem 0 2.5rem;
+}
+.toc p { font-weight: 600; color: var(--ink); margin: 0 0 0.6rem; font-size: 0.95rem; }
+.toc ol { margin: 0; padding-left: 1.2rem; color: var(--muted); font-size: 0.98rem; }
+.toc li { margin-bottom: 0.3rem; }
+
+/* Pulled-out point. Amber for "read this bit", violet for the plain note. */
+.note, .warn {
+  border-left: 3px solid var(--violet); background: var(--panel);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.1rem 1.35rem; margin: 1.9rem 0;
+}
+.warn { border-left-color: var(--amber); }
+.note p:last-child, .warn p:last-child { margin-bottom: 0; }
+.note strong, .warn strong { color: var(--ink); }
+
+/* Worked example: the sums, set apart so they can be checked at a glance. */
+.sums {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 1.35rem 1.5rem; margin: 1.9rem 0; background: var(--page);
+}
+.sums h4 {
+  margin: 0 0 0.9rem; font-size: 0.85rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted); font-weight: 700;
+}
+.sums dl { margin: 0; }
+.sums .row {
+  display: flex; justify-content: space-between; gap: 1.5rem;
+  padding: 0.42rem 0; border-bottom: 1px dashed var(--line);
+}
+.sums .row:last-child { border-bottom: 0; }
+.sums .row.total { border-top: 2px solid var(--line); border-bottom: 0; margin-top: 0.35rem; padding-top: 0.7rem; }
+.sums .row.total dt, .sums .row.total dd { color: var(--ink); font-weight: 700; }
+.sums dt { margin: 0; color: var(--body); }
+.sums dd {
+  margin: 0; color: var(--ink); font-weight: 600;
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+
+.article table {
+  width: 100%; border-collapse: collapse; margin: 1.9rem 0; font-size: 0.98rem;
+}
+.article th, .article td {
+  text-align: left; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.article th { color: var(--ink); font-weight: 600; background: var(--panel); }
+.table-scroll { overflow-x: auto; }
+
+.article blockquote {
+  margin: 1.9rem 0; padding: 0 0 0 1.35rem;
+  border-left: 3px solid var(--amber); color: var(--ink); font-size: 1.1rem;
+}
+.article blockquote p:last-child { margin-bottom: 0; }
+.article blockquote cite {
+  display: block; margin-top: 0.6rem; font-size: 0.92rem;
+  color: var(--muted); font-style: normal;
+}
+
+.article ul li, .article ol li { margin-bottom: 0.5rem; }
+
+/* Sources. Small, but the whole point of trusting the page. */
+.sources { font-size: 0.94rem; color: var(--muted); }
+.sources li { margin-bottom: 0.45rem; }
+
+.disclose {
+  font-size: 0.94rem; color: var(--muted); background: var(--panel);
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 1.1rem 1.35rem; margin-top: 3rem;
+}
+.disclose p:last-child { margin-bottom: 0; }
+
+/* The app, mentioned once, where it is actually relevant. */
+.plug {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 1.75rem; margin: 3rem 0 0; background: var(--panel);
+  display: grid; grid-template-columns: 56px 1fr; gap: 1.25rem; align-items: start;
+}
+.plug > img { width: 56px; height: 56px; border-radius: 14px; }
+.plug h2 { margin-top: 0; font-size: 1.2rem; }
+.plug p { margin-bottom: 0.9rem; }
+.plug .play-badge img { height: 48px; width: auto; }
+.plug .play-badge { display: inline-block; line-height: 0; }
+@media (max-width: 34rem) { .plug { grid-template-columns: 1fr; } }
+
+/* Guide cards, on the hub and at the foot of each article. */
+.guide-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: 1.5rem; margin: 0; padding: 0; list-style: none;
+}
+.guide-card {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  overflow: hidden; background: var(--page); display: flex; flex-direction: column;
+}
+.guide-card img { border-bottom: 1px solid var(--line); }
+.guide-card .body { padding: 1.25rem 1.35rem 1.5rem; }
+.guide-card h3 { margin: 0 0 0.45rem; font-size: 1.08rem; line-height: 1.3; }
+.guide-card h3 a { color: var(--ink); text-decoration: none; }
+.guide-card h3 a:hover { color: var(--violet); text-decoration: underline; }
+.guide-card p { margin: 0; color: var(--muted); font-size: 0.97rem; }
+
+.more-guides { border-top: 1px solid var(--line); padding: 3rem 0 1rem; }
+.more-guides h2 { font-size: 1.35rem; margin-bottom: 1.5rem; }
+
+.crumbs { font-size: 0.92rem; color: var(--muted); padding-top: 1.75rem; }
+.crumbs a { color: var(--muted); }
+.crumbs span { padding: 0 0.4rem; }
+
+/* The guides hub: one heading, then the cards. */
+.guide-list { padding: 1rem 0 2rem; }
+.guide-list h2 { margin-bottom: 1.75rem; }
+.article + .guide-list { padding-top: 0; }

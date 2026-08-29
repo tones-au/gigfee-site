@@ -2,19 +2,55 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://gigfee.tones-au.com/</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://gigfee.tones-au.com/guides/</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://gigfee.tones-au.com/guides/payday-super-for-musicians/</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gigfee.tones-au.com/guides/super-out-of-your-fee/</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gigfee.tones-au.com/guides/band-leader-super-and-splits/</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gigfee.tones-au.com/guides/super-details-a-venue-needs/</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gigfee.tones-au.com/guides/your-structure-and-super/</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://gigfee.tones-au.com/privacy-policy.html</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://gigfee.tones-au.com/terms.html</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
