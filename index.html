@@ -228,8 +228,11 @@
      which is why it never lined up with anything. 80px of image is 54px of
      badge, and the negative margin hands the baked-in clear space back to
      the layout so the row's gap is the real gap. */
+  .play-badge { --badge-h: 52px; }
   .play-badge img {
-    height: 80px; width: auto; margin: -13px;
+    height: calc(var(--badge-h) * 1.4881); /* 250/168: asset over visible */
+    width: auto;
+    margin: calc(var(--badge-h) * -0.2440); /* the baked 41px, scaled */
   }
   .play-badge:focus-visible {
     outline: 2px solid var(--amber); outline-offset: 3px;
@@ -245,18 +248,34 @@
      display:none, so soon can never be tapped and live never reads dead. */
   .store-row { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
   .midway-cta .store-row { justify-content: center; }
-  .actions { gap: 0.6rem; flex-wrap: wrap; }
+  .actions {
+    display: grid;
+    grid-template-columns: repeat(2, calc(52px * 3.357));
+    gap: 0.5rem;
+    justify-content: start;
+    align-items: center;
+  }
+  .actions .btn-ghost {
+    grid-column: 1 / -1;
+    box-sizing: border-box;
+    height: 52px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0; margin: 0;
+  }
   .appstore-badge {
+    --badge-h: 52px;
     box-sizing: border-box;
     display: inline-flex; align-items: center; justify-content: center;
     gap: 0.55rem;
-    width: 181px; height: 54px; border-radius: 8px;
+    width: calc(var(--badge-h) * 3.357); /* 564/168: the Play badge's ratio */
+    height: var(--badge-h);
+    border-radius: 8px;
     background: #000; border: 1px solid #a6a6a6;
     color: #fff; text-decoration: none; line-height: 1;
   }
   .appstore-badge svg { height: 23px; width: auto; fill: #fff; flex: none; }
-  .appstore-badge .ab-small { display: block; font-size: 0.56rem; letter-spacing: 0.02em; margin-bottom: 0.18rem; }
-  .appstore-badge .ab-big { display: block; font-size: 1.02rem; font-weight: 600; letter-spacing: -0.01em; }
+  .appstore-badge .ab-small { display: block; font-size: 8px; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 3px; }
+  .appstore-badge .ab-big { display: block; font-size: 21px; font-weight: 600; letter-spacing: -0.01em; }
   .appstore-badge.appstore-soon { cursor: default; }
   .appstore-badge:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
   html[data-appstore="soon"] .appstore-live { display: none; }
