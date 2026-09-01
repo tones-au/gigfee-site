@@ -222,13 +222,19 @@
     line-height: 0;
     border-radius: 8px;
   }
+  /* Google's asset carries 41px of mandatory clear space on every side,
+     baked into the PNG: the visible badge is 564x168 inside 646x250. Sized
+     naively to 54px it draws a 34px badge floating in invisible margin,
+     which is why it never lined up with anything. 80px of image is 54px of
+     badge, and the negative margin hands the baked-in clear space back to
+     the layout so the row's gap is the real gap. */
   .play-badge img {
-    height: 54px; width: auto;
+    height: 80px; width: auto; margin: -13px;
   }
   .play-badge:focus-visible {
     outline: 2px solid var(--amber); outline-offset: 3px;
   }
-  .actions .play-badge img { height: 58px; }
+
 
   /* The App Store badge, matched to Google's: same height, same 8px
      radius, black ground, hairline border, glyph left and two-line text
@@ -237,17 +243,20 @@
      behind html[data-appstore]: "soon" is unlinked and says "Coming soon on
      the"; "live" links and says "Download on the". The inactive one is
      display:none, so soon can never be tapped and live never reads dead. */
-  .store-row { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+  .store-row { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+  .midway-cta .store-row { justify-content: center; }
+  .actions { gap: 0.6rem; flex-wrap: wrap; }
   .appstore-badge {
-    display: inline-flex; align-items: center; gap: 0.65rem;
-    height: 54px; padding: 0 1.1rem; border-radius: 8px;
+    box-sizing: border-box;
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 0.55rem;
+    width: 181px; height: 54px; border-radius: 8px;
     background: #000; border: 1px solid #a6a6a6;
     color: #fff; text-decoration: none; line-height: 1;
   }
-  .actions .appstore-badge { height: 58px; }
-  .appstore-badge svg { height: 26px; width: auto; fill: #fff; flex: none; }
-  .appstore-badge .ab-small { display: block; font-size: 0.6rem; letter-spacing: 0.02em; margin-bottom: 0.2rem; }
-  .appstore-badge .ab-big { display: block; font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em; }
+  .appstore-badge svg { height: 23px; width: auto; fill: #fff; flex: none; }
+  .appstore-badge .ab-small { display: block; font-size: 0.56rem; letter-spacing: 0.02em; margin-bottom: 0.18rem; }
+  .appstore-badge .ab-big { display: block; font-size: 1.02rem; font-weight: 600; letter-spacing: -0.01em; }
   .appstore-badge.appstore-soon { cursor: default; }
   .appstore-badge:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
   html[data-appstore="soon"] .appstore-live { display: none; }
