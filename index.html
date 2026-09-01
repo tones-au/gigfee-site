@@ -230,25 +230,26 @@
   }
   .actions .play-badge img { height: 58px; }
 
-  /* The App Store badge, drawn rather than downloaded: Apple's artwork has
-     its own brand rules, and a hand-styled badge in the site's own language
-     stays honest until the official asset is worth adding. Two variants
-     behind html[data-appstore]: "soon" is dimmed and unlinked, "live" is the
-     real link. display:none for the inactive one, so the soon badge can
-     never be tapped and the live one never reads as dead. */
+  /* The App Store badge, matched to Google's: same height, same 8px
+     radius, black ground, hairline border, glyph left and two-line text
+     right - the geometry every store badge shares, so the pair reads as a
+     set. The apple is Font Awesome's brand glyph (CC BY 4.0). Two variants
+     behind html[data-appstore]: "soon" is unlinked and says "Coming soon on
+     the"; "live" links and says "Download on the". The inactive one is
+     display:none, so soon can never be tapped and live never reads dead. */
+  .store-row { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
   .appstore-badge {
-    display: inline-flex; flex-direction: column; justify-content: center;
-    height: 54px; padding: 0 1.2rem; border-radius: 8px;
-    background: #000; color: #fff; border: 1px solid #4a4a4a;
-    text-decoration: none; line-height: 1.2; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 0.65rem;
+    height: 54px; padding: 0 1.1rem; border-radius: 8px;
+    background: #000; border: 1px solid #a6a6a6;
+    color: #fff; text-decoration: none; line-height: 1;
   }
   .actions .appstore-badge { height: 58px; }
-  .appstore-badge small { font-weight: 400; font-size: 0.68rem; opacity: 0.8; }
-  .appstore-badge.appstore-soon { opacity: 0.55; cursor: default; }
-  .appstore-badge.appstore-soon em {
-    font-style: normal; color: var(--amber); font-size: 0.66rem;
-    letter-spacing: 0.14em;
-  }
+  .appstore-badge svg { height: 26px; width: auto; fill: #fff; flex: none; }
+  .appstore-badge .ab-small { display: block; font-size: 0.6rem; letter-spacing: 0.02em; margin-bottom: 0.2rem; }
+  .appstore-badge .ab-big { display: block; font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em; }
+  .appstore-badge.appstore-soon { cursor: default; }
+  .appstore-badge:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
   html[data-appstore="soon"] .appstore-live { display: none; }
   html[data-appstore="live"] .appstore-soon { display: none; }
   .actions { align-items: center; }
@@ -311,8 +312,13 @@
         <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.stagefee.stagefee">
           <img src="assets/google-play-badge.png" alt="Get it on Google Play" width="646" height="250">
         </a>
-        <a class="appstore-badge appstore-live" href="https://apps.apple.com/au/app/id6806688513">Download on the<br>App Store</a>
-        <span class="appstore-badge appstore-soon">App Store <em>SOON</em><small>iPhone, in review</small></span>
+        <span class="appstore-badge appstore-soon" aria-label="Coming soon on the App Store">
+          <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.9-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          <span><span class="ab-small">Coming soon on the</span><span class="ab-big">App Store</span></span>
+        </span><a class="appstore-badge appstore-live" href="https://apps.apple.com/au/app/id6806688513" aria-label="Download on the App Store">
+          <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.9-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          <span><span class="ab-small">Download on the</span><span class="ab-big">App Store</span></span>
+        </a>
         <a class="btn btn-ghost" href="#features">See what it does</a>
       </div>
     </div>
@@ -411,11 +417,16 @@
 <div class="shell">
   <div class="midway-cta">
     <p>Free to start. No account, no card.</p>
-    <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.stagefee.stagefee">
+    <div class="store-row"><a class="play-badge" href="https://play.google.com/store/apps/details?id=com.stagefee.stagefee">
       <img src="assets/google-play-badge.png" alt="Get it on Google Play" width="646" height="250">
     </a>
-    <a class="appstore-badge appstore-live" href="https://apps.apple.com/au/app/id6806688513">Download on the<br>App Store</a>
-        <span class="appstore-badge appstore-soon">App Store <em>SOON</em><small>iPhone, in review</small></span>
+    <span class="appstore-badge appstore-soon" aria-label="Coming soon on the App Store">
+          <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.9-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          <span><span class="ab-small">Coming soon on the</span><span class="ab-big">App Store</span></span>
+        </span><a class="appstore-badge appstore-live" href="https://apps.apple.com/au/app/id6806688513" aria-label="Download on the App Store">
+          <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.9-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          <span><span class="ab-small">Download on the</span><span class="ab-big">App Store</span></span>
+        </a></div>
   </div>
 </div>
 
@@ -523,11 +534,16 @@
           not be you by surprise: cancel before the trial ends and you are
           not charged.
         </p>
-        <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.stagefee.stagefee">
+        <div class="store-row"><a class="play-badge" href="https://play.google.com/store/apps/details?id=com.stagefee.stagefee">
           <img src="assets/google-play-badge.png" alt="Get it on Google Play" width="646" height="250">
         </a>
-        <a class="appstore-badge appstore-live" href="https://apps.apple.com/au/app/id6806688513">Download on the<br>App Store</a>
-        <span class="appstore-badge appstore-soon">App Store <em>SOON</em><small>iPhone, in review</small></span>
+        <span class="appstore-badge appstore-soon" aria-label="Coming soon on the App Store">
+          <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.9-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          <span><span class="ab-small">Coming soon on the</span><span class="ab-big">App Store</span></span>
+        </span><a class="appstore-badge appstore-live" href="https://apps.apple.com/au/app/id6806688513" aria-label="Download on the App Store">
+          <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.9-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          <span><span class="ab-small">Download on the</span><span class="ab-big">App Store</span></span>
+        </a></div>
         <p class="fineprint">
           Android phones and tablets<span class="appstore-soon">, with iPhone in
           review now</span><span class="appstore-live">, iPhone and iPad</span>.
