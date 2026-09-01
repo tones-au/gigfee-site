@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-AU">
+<!--
+  data-appstore is the App Store switch: "soon" shows a dimmed, unlinked
+  badge; "live" shows the real link. Flip day is this one word, plus the
+  JSON-LD operatingSystem line below (search "Android 10 and later").
+-->
+<html lang="en-AU" data-appstore="soon">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -224,6 +229,28 @@
     outline: 2px solid var(--amber); outline-offset: 3px;
   }
   .actions .play-badge img { height: 58px; }
+
+  /* The App Store badge, drawn rather than downloaded: Apple's artwork has
+     its own brand rules, and a hand-styled badge in the site's own language
+     stays honest until the official asset is worth adding. Two variants
+     behind html[data-appstore]: "soon" is dimmed and unlinked, "live" is the
+     real link. display:none for the inactive one, so the soon badge can
+     never be tapped and the live one never reads as dead. */
+  .appstore-badge {
+    display: inline-flex; flex-direction: column; justify-content: center;
+    height: 54px; padding: 0 1.2rem; border-radius: 8px;
+    background: #000; color: #fff; border: 1px solid #4a4a4a;
+    text-decoration: none; line-height: 1.2; font-weight: 600;
+  }
+  .actions .appstore-badge { height: 58px; }
+  .appstore-badge small { font-weight: 400; font-size: 0.68rem; opacity: 0.8; }
+  .appstore-badge.appstore-soon { opacity: 0.55; cursor: default; }
+  .appstore-badge.appstore-soon em {
+    font-style: normal; color: var(--amber); font-size: 0.66rem;
+    letter-spacing: 0.14em;
+  }
+  html[data-appstore="soon"] .appstore-live { display: none; }
+  html[data-appstore="live"] .appstore-soon { display: none; }
   .actions { align-items: center; }
 
   /* The second ask, placed where somebody has just finished reading what the
@@ -284,6 +311,8 @@
         <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.stagefee.stagefee">
           <img src="assets/google-play-badge.png" alt="Get it on Google Play" width="646" height="250">
         </a>
+        <a class="appstore-badge appstore-live" href="https://apps.apple.com/au/app/id6806688513">Download on the<br>App Store</a>
+        <span class="appstore-badge appstore-soon">App Store <em>SOON</em><small>iPhone, in review</small></span>
         <a class="btn btn-ghost" href="#features">See what it does</a>
       </div>
     </div>
@@ -385,6 +414,8 @@
     <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.stagefee.stagefee">
       <img src="assets/google-play-badge.png" alt="Get it on Google Play" width="646" height="250">
     </a>
+    <a class="appstore-badge appstore-live" href="https://apps.apple.com/au/app/id6806688513">Download on the<br>App Store</a>
+        <span class="appstore-badge appstore-soon">App Store <em>SOON</em><small>iPhone, in review</small></span>
   </div>
 </div>
 
@@ -495,9 +526,13 @@
         <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.stagefee.stagefee">
           <img src="assets/google-play-badge.png" alt="Get it on Google Play" width="646" height="250">
         </a>
+        <a class="appstore-badge appstore-live" href="https://apps.apple.com/au/app/id6806688513">Download on the<br>App Store</a>
+        <span class="appstore-badge appstore-soon">App Store <em>SOON</em><small>iPhone, in review</small></span>
         <p class="fineprint">
-          Android phones and tablets. Australian tax rules, so it is built for
-          people invoicing in Australia.
+          Android phones and tablets<span class="appstore-soon">, with iPhone in
+          review now</span><span class="appstore-live">, iPhone and iPad</span>.
+          Australian tax rules, so it is built for people invoicing in
+          Australia.
         </p>
       </div>
     </div>
