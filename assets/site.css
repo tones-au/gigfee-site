@@ -177,6 +177,11 @@ ul { padding-left: 1.25rem; }
 .play-badge img {
   height: calc(var(--badge-h) * 1.4881);  /* 250/168: asset over visible */
   width: auto;
+  /* The global img rule caps every image at the width of its container, and
+     an inline-block that is sized by the image it contains resolves that to
+     less than the image needs: the badge came out narrower than it is tall,
+     which is exactly the distortion Google forbids. */
+  max-width: none;
   margin: calc(var(--badge-h) * -0.2440); /* the baked 41px, scaled */
 }
 .play-badge:focus-visible { outline: 2px solid var(--violet); outline-offset: 3px; }
