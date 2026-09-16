@@ -1,39 +1,89 @@
 /* GigFee site shell: tokens, typography, masthead and footer.
-   Shared by index.html, privacy-policy.html and terms.html so the three
-   pages cannot drift apart. Page-specific layout stays in each page. */
+   Shared by index.html, privacy-policy.html, terms.html and the guides, so
+   the pages cannot drift apart. Page-specific layout stays in each page.
+
+   The palette is paper and ink. It used to open on a saturated violet
+   gradient, which is the house style of every generated landing page on the
+   internet and made a tax tool look like a toy. Violet is still the brand,
+   but it is now an accent on the mark, the links and the ticks, spent where
+   it means something instead of poured over the fold. The only dark object
+   above the fold is the phone itself, and the one dark band is at the end. */
 
 :root {
   color-scheme: light dark;
 
-  --violet: #5b4be0;
-  --amber: #f0a02c;
-  --ink: #14141b;
-  --body: #3f3f4d;
-  --muted: #6b6b7b;
-  --page: #ffffff;
-  --panel: #f7f7fb;
-  --line: #e4e4ec;
-  --code: #f1f1f4;
-  --hero-from: #2b1f70;
-  --hero-to: #16122f;
-  --hero-ink: #ffffff;
-  --hero-body: #cfc9f2;
-  --shadow: rgba(20, 20, 27, 0.14);
+  /* Ink and paper. The cast is faintly cool, matching the app's own #14141b,
+     which is what keeps this off the warm-cream look. */
+  --page: #fcfcfa;
+  --surface: #ffffff;
+  --panel: #f5f5f2;
+  --ink: #15151a;
+  --body: #3c3c46;
+  --muted: #6c6c78;
+  --line: #e2e2e6;
+  --line-strong: #15151a;
+  --code: #f0f0ee;
 
-  --radius: 14px;
+  /* The brand accent, deepened from the app's #5b4be0 so it clears 4.5:1 as
+     link text on paper. The lighter one is for fills and marks only. */
+  --violet: #4a39d0;
+  --violet-light: #5b4be0;
+  --violet-wash: #f1effc;
+
+  /* Attention. The text weight is darkened for contrast; the bright one is a
+     fill, never a word. */
+  --amber: #8a5300;
+  --amber-fill: #f0a02c;
+
+  /* The single dark tone: the phone bezel and the closing band. */
+  --slate: #17171f;
+  --slate-ink: #ffffff;
+  --slate-body: #b9b9c6;
+  --slate-line: #2e2e3c;
+
+  /* Kept because other pages reference them. The hero no longer uses a
+     gradient, so these now describe the closing band. */
+  --hero-from: #17171f;
+  --hero-to: #17171f;
+  --hero-ink: #ffffff;
+  --hero-body: #b9b9c6;
+
+  --shadow: rgba(20, 20, 27, 0.1);
+
+  --radius: 12px;
   --shell: 68rem;
+  --measure: 44rem;
+
+  /* Everything made of words. */
+  --f-ui: "Google Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* Figures only, so a reader can find the money without reading the page.
+     Loaded on the pages that use it; the fallback is a real condensed face,
+     so a page that has not loaded it still lines its columns up. */
+  --f-fig: "IBM Plex Sans Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --violet: #a99cff;
-    --ink: #f0f0f6;
-    --body: #c3c3d0;
-    --muted: #9494a5;
-    --page: #121218;
+    --page: #111117;
+    --surface: #16161d;
     --panel: #1a1a23;
+    --ink: #f2f2f7;
+    --body: #c6c6d2;
+    --muted: #9696a6;
     --line: #2c2c38;
-    --code: #26262f;
+    --line-strong: #f2f2f7;
+    --code: #24242d;
+
+    --violet: #a99cff;
+    --violet-light: #a99cff;
+    --violet-wash: #1d1b33;
+
+    --amber: #f0b45c;
+    --amber-fill: #f0a02c;
+
+    --slate: #0b0b10;
+    --slate-line: #26262f;
+
     --shadow: rgba(0, 0, 0, 0.5);
   }
 }
@@ -44,7 +94,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  font-family: "Google Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--f-ui);
   font-size: 1.0625rem;
   line-height: 1.65;
   color: var(--body);
@@ -55,14 +105,29 @@ body {
 /* `text-wrap: balance` evens out the lines of a heading so the last one is
    not left holding a single word. Ignored by browsers that do not have it,
    which just wrap as before. */
-h1, h2, h3 { color: var(--ink); line-height: 1.2; margin: 0 0 0.6rem; text-wrap: balance; }
-h1 { font-size: clamp(2.1rem, 5.2vw, 3.3rem); font-weight: 700; letter-spacing: -0.02em; }
-h2 { font-size: clamp(1.5rem, 3.2vw, 2rem); font-weight: 600; letter-spacing: -0.015em; }
-h3 { font-size: 1.2rem; font-weight: 600; }
+h1, h2, h3 { color: var(--ink); line-height: 1.18; margin: 0 0 0.6rem; text-wrap: balance; }
+h1 { font-size: clamp(2.15rem, 5vw, 3.35rem); font-weight: 700; letter-spacing: -0.025em; }
+h2 { font-size: clamp(1.55rem, 3.2vw, 2.15rem); font-weight: 600; letter-spacing: -0.02em; }
+h3 { font-size: 1.18rem; font-weight: 600; letter-spacing: -0.01em; }
 p { margin: 0 0 1rem; }
 a { color: var(--violet); text-decoration-thickness: 1px; text-underline-offset: 2px; }
 img { max-width: 100%; height: auto; display: block; }
 ul { padding-left: 1.25rem; }
+
+/* Any figure, anywhere. Condensed and tabular: columns of money line up, and
+   the numbers are findable without reading the sentence around them. */
+.fig {
+  font-family: var(--f-fig);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  letter-spacing: 0.01em;
+}
+
+/* The label above a heading. Says what kind of thing follows. */
+.kicker {
+  font-size: 0.76rem; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted); margin: 0 0 0.7rem;
+}
 
 .shell { max-width: var(--shell); margin: 0 auto; padding: 0 1.5rem; }
 
@@ -74,22 +139,47 @@ ul { padding-left: 1.25rem; }
 }
 .masthead .shell {
   display: flex; align-items: center; justify-content: space-between;
-  gap: 1rem; padding-top: 0.85rem; padding-bottom: 0.85rem;
+  gap: 1rem; padding-top: 0.8rem; padding-bottom: 0.8rem;
 }
 .brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
-.brand img { width: 34px; height: 34px; border-radius: 9px; }
-.brand span { font-weight: 700; font-size: 1.2rem; color: var(--ink); letter-spacing: -0.01em; }
+.brand img { width: 32px; height: 32px; border-radius: 8px; }
+.brand span { font-weight: 700; font-size: 1.18rem; color: var(--ink); letter-spacing: -0.02em; }
 .brand span b { color: var(--violet); font-weight: 700; }
-.masthead nav { display: flex; gap: 1.5rem; font-size: 0.97rem; font-weight: 500; }
+.masthead nav { display: flex; gap: 1.45rem; font-size: 0.95rem; font-weight: 500; }
 .masthead nav a { color: var(--muted); text-decoration: none; }
-.masthead nav a:hover { color: var(--violet); }
-@media (max-width: 34rem) { .masthead nav { display: none; } }
+.masthead nav a:hover { color: var(--ink); }
+@media (max-width: 46rem) { .masthead nav { display: none; } }
 
 /* Buttons */
 .btn {
-  display: inline-block; padding: 0.72rem 1.4rem; border-radius: 10px;
-  font-weight: 600; font-size: 1rem; text-decoration: none; border: 1px solid transparent;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0.7rem 1.35rem; border-radius: 9px;
+  font-weight: 600; font-size: 1rem; text-decoration: none;
+  border: 1px solid transparent;
 }
+.btn-solid { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.btn-solid:hover { background: var(--violet); border-color: var(--violet); color: #fff; }
+.btn-outline { border-color: var(--line-strong); color: var(--ink); }
+.btn-outline:hover { background: var(--ink); color: var(--page); }
+
+/* The Google Play badge.
+   Google's brand guidelines require the supplied asset unmodified, with
+   clear space around it and a minimum height, so it is sized rather than
+   restyled: no border, no filter, no recolour.
+
+   The asset carries 41px of mandatory clear space on every side, baked into
+   the PNG: the visible badge is 564x168 inside 646x250. Sized naively it
+   draws a small badge floating in invisible margin, which is why it never
+   lined up with anything beside it. The height below is the image height
+   that yields --badge-h of actual badge, and the negative margin hands the
+   baked-in clear space back to the layout, so a flex gap is the real gap. */
+.play-badge { display: inline-block; line-height: 0; border-radius: 8px; --badge-h: 54px; }
+.play-badge img {
+  height: calc(var(--badge-h) * 1.4881);  /* 250/168: asset over visible */
+  width: auto;
+  margin: calc(var(--badge-h) * -0.2440); /* the baked 41px, scaled */
+}
+.play-badge:focus-visible { outline: 2px solid var(--violet); outline-offset: 3px; }
 
 /* Long-form document pages */
 .doc { max-width: 46rem; padding-top: 3rem; padding-bottom: 4rem; }
@@ -114,8 +204,8 @@ footer { border-top: 1px solid var(--line); padding: 3rem 0; font-size: 0.94rem;
 .foot-top { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; margin-bottom: 2rem; }
 .foot-links { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; }
 .foot-links a { color: var(--body); text-decoration: none; }
-.foot-links a:hover { color: var(--violet); text-decoration: underline; }
-.disclaimer { max-width: 46rem; margin: 0; }
+.foot-links a:hover { color: var(--ink); text-decoration: underline; }
+.disclaimer { max-width: var(--measure); margin: 0; }
 .copyright { margin-top: 0.75rem; font-size: 0.88rem; }
 
 /* ------------------------------------------------------------------ *
@@ -126,12 +216,11 @@ footer { border-top: 1px solid var(--line); padding: 3rem 0; font-size: 0.94rem;
  * furniture that only appears inside an article.
  * ------------------------------------------------------------------ */
 
-.article { max-width: 44rem; padding: 2.5rem 0 4rem; }
+.article { max-width: var(--measure); padding: 2.5rem 0 4rem; }
 
-.kicker {
-  font-size: 0.82rem; font-weight: 700; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--amber); margin: 0 0 0.9rem;
-}
+/* Inside an article the kicker is the one place amber carries a word. It
+   marks the subject of the piece rather than labelling a layout section. */
+.article .kicker { color: var(--amber); }
 
 .article h1 { font-size: clamp(1.9rem, 4.4vw, 2.7rem); margin-bottom: 1rem; }
 .article h2 {
@@ -171,31 +260,53 @@ footer { border-top: 1px solid var(--line); padding: 3rem 0; font-size: 0.94rem;
   border-radius: 0 var(--radius) var(--radius) 0;
   padding: 1.1rem 1.35rem; margin: 1.9rem 0;
 }
-.warn { border-left-color: var(--amber); }
+.warn { border-left-color: var(--amber-fill); }
 .note p:last-child, .warn p:last-child { margin-bottom: 0; }
 .note strong, .warn strong { color: var(--ink); }
 
-/* Worked example: the sums, set apart so they can be checked at a glance. */
+/* Worked example: the sums, set apart so they can be checked at a glance.
+   The one device on this site that is entirely the subject's own material,
+   an invoice extract, and the reason a reader believes the rest. */
 .sums {
   border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 1.35rem 1.5rem; margin: 1.9rem 0; background: var(--page);
+  padding: 1.35rem 1.5rem; margin: 1.9rem 0; background: var(--surface);
 }
 .sums h4 {
-  margin: 0 0 0.9rem; font-size: 0.85rem; letter-spacing: 0.1em;
+  margin: 0 0 0.9rem; font-size: 0.78rem; letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--muted); font-weight: 700;
 }
 .sums dl { margin: 0; }
 .sums .row {
   display: flex; justify-content: space-between; gap: 1.5rem;
-  padding: 0.42rem 0; border-bottom: 1px dashed var(--line);
+  padding: 0.44rem 0; border-bottom: 1px solid var(--line);
 }
 .sums .row:last-child { border-bottom: 0; }
-.sums .row.total { border-top: 2px solid var(--line); border-bottom: 0; margin-top: 0.35rem; padding-top: 0.7rem; }
+.sums .row.total {
+  border-top: 1px solid var(--line-strong); border-bottom: 0;
+  margin-top: 0.35rem; padding-top: 0.7rem;
+}
 .sums .row.total dt, .sums .row.total dd { color: var(--ink); font-weight: 700; }
 .sums dt { margin: 0; color: var(--body); }
 .sums dd {
   margin: 0; color: var(--ink); font-weight: 600;
-  font-variant-numeric: tabular-nums; white-space: nowrap;
+  font-family: var(--f-fig); font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum"; white-space: nowrap; font-size: 1.05em;
+}
+.sums .note-row { margin: 0.85rem 0 0; font-size: 0.93rem; color: var(--muted); }
+
+/* A figure that is not part of the total above it. Set below the settled
+   sum, on its own rule, with a label saying where the money actually goes,
+   because a super figure tucked under "the client pays" reads as part of
+   what the client pays, which is the exact mistake the block exists to
+   correct. */
+.sums .aside {
+  margin-top: 1.1rem; padding-top: 0.9rem;
+  border-top: 1px dashed var(--line);
+}
+.sums .aside .row { border-bottom: 0; padding-bottom: 0; }
+.sums .aside .whose {
+  display: block; margin-top: 0.15rem;
+  font-size: 0.85rem; font-weight: 500; color: var(--muted);
 }
 
 .article table {
@@ -210,7 +321,7 @@ footer { border-top: 1px solid var(--line); padding: 3rem 0; font-size: 0.94rem;
 
 .article blockquote {
   margin: 1.9rem 0; padding: 0 0 0 1.35rem;
-  border-left: 3px solid var(--amber); color: var(--ink); font-size: 1.1rem;
+  border-left: 3px solid var(--amber-fill); color: var(--ink); font-size: 1.1rem;
 }
 .article blockquote p:last-child { margin-bottom: 0; }
 .article blockquote cite {
@@ -240,8 +351,7 @@ footer { border-top: 1px solid var(--line); padding: 3rem 0; font-size: 0.94rem;
 .plug > img { width: 56px; height: 56px; border-radius: 14px; }
 .plug h2 { margin-top: 0; font-size: 1.2rem; }
 .plug p { margin-bottom: 0.9rem; }
-.plug .play-badge img { height: 48px; width: auto; }
-.plug .play-badge { display: inline-block; line-height: 0; }
+.plug .play-badge { --badge-h: 46px; }
 @media (max-width: 34rem) { .plug { grid-template-columns: 1fr; } }
 
 /* Guide cards, on the hub and at the foot of each article. */
@@ -251,14 +361,14 @@ footer { border-top: 1px solid var(--line); padding: 3rem 0; font-size: 0.94rem;
 }
 .guide-card {
   border: 1px solid var(--line); border-radius: var(--radius);
-  overflow: hidden; background: var(--page); display: flex; flex-direction: column;
+  overflow: hidden; background: var(--surface); display: flex; flex-direction: column;
 }
 .guide-card img { border-bottom: 1px solid var(--line); }
-.guide-card .body { padding: 1.25rem 1.35rem 1.5rem; }
-.guide-card h3 { margin: 0 0 0.45rem; font-size: 1.08rem; line-height: 1.3; }
+.guide-card .body { padding: 1.2rem 1.3rem 1.4rem; }
+.guide-card h3 { margin: 0 0 0.45rem; font-size: 1.06rem; line-height: 1.3; }
 .guide-card h3 a { color: var(--ink); text-decoration: none; }
 .guide-card h3 a:hover { color: var(--violet); text-decoration: underline; }
-.guide-card p { margin: 0; color: var(--muted); font-size: 0.97rem; }
+.guide-card p { margin: 0; color: var(--muted); font-size: 0.96rem; }
 
 .more-guides { border-top: 1px solid var(--line); padding: 3rem 0 1rem; }
 .more-guides h2 { font-size: 1.35rem; margin-bottom: 1.5rem; }
@@ -271,3 +381,11 @@ footer { border-top: 1px solid var(--line); padding: 3rem 0; font-size: 0.94rem;
 .guide-list { padding: 1rem 0 2rem; }
 .guide-list h2 { margin-bottom: 1.75rem; }
 .article + .guide-list { padding-top: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

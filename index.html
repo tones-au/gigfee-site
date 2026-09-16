@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <!--
-  data-appstore is the App Store switch: "soon" shows a dimmed, unlinked
-  badge; "live" shows the real link. Flip day is this one word, plus the
+  data-appstore is the App Store switch: "soon" shows a line of text; "live"
+  shows Apple's badge and the real link. Flip day is this one word, plus the
   JSON-LD operatingSystem line below (search "Android 10 and later").
+
+  Before flipping it, drop Apple's supplied badge artwork in at
+  assets/app-store-badge.svg. Apple's marketing guidelines require their own
+  asset unmodified, which is why there is no hand-drawn stand-in here: the
+  one that used to sit beside Google's was against those guidelines and
+  looked it. While the switch says "soon" the badge markup is display:none,
+  so a missing file cannot show.
 -->
 <html lang="en-AU" data-appstore="soon">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GigFee | Tax invoicing for Australian musicians</title>
-<meta name="description" content="Invoice a gig from your phone in about a minute. ABN and GST on the invoice, super tracked, band splits kept private. Free on Android.">
+<title>GigFee | Tax invoicing and payday super for Australian musicians</title>
+<meta name="description" content="Invoice a gig from your phone in about a minute. ABN and GST on the invoice, payday super tracked to the day it is due, band splits kept private and receipts filed for tax time.">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/assets/favicon-96.png" type="image/png" sizes="96x96">
 <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/assets/favicon-192.png">
-<meta name="theme-color" content="#2b1f70">
+<meta name="theme-color" content="#fcfcfa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111117" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://gigfee.tones-au.com/">
-<meta property="og:title" content="GigFee | Tax invoicing for Australian musicians">
-<meta property="og:description" content="Invoice a gig from your phone in about a minute. ABN and GST on the invoice, super tracked, band splits kept private. Free on Android.">
+<meta property="og:title" content="GigFee | Tax invoicing and payday super for Australian musicians">
+<meta property="og:description" content="Invoice a gig from your phone in about a minute. ABN and GST on the invoice, payday super tracked to the day it is due, band splits kept private and receipts filed for tax time.">
 <meta property="og:image" content="https://gigfee.tones-au.com/assets/og-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -29,7 +37,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <script type="application/ld+json">
 {
@@ -41,7 +49,7 @@
       "name": "GigFee",
       "alternateName": "GigFee by Tones AU",
       "url": "https://gigfee.tones-au.com/",
-      "description": "Tax invoicing for Australian musicians. ABN and GST on the invoice, superannuation tracked, band splits kept private.",
+      "description": "Tax invoicing and payday super for Australian musicians. ABN and GST on the invoice, superannuation tracked to the day it is due, band splits kept private.",
       "inLanguage": "en-AU",
       "publisher": { "@id": "https://gigfee.tones-au.com/#organisation" }
     },
@@ -69,8 +77,8 @@
       "@type": "WebPage",
       "@id": "https://gigfee.tones-au.com/#webpage",
       "url": "https://gigfee.tones-au.com/",
-      "name": "GigFee | Tax invoicing for Australian musicians",
-      "description": "Invoice a gig from your phone in about a minute. ABN and GST on the invoice, super tracked, band splits kept private. Free on Android.",
+      "name": "GigFee | Tax invoicing and payday super for Australian musicians",
+      "description": "Invoice a gig from your phone in about a minute. ABN and GST on the invoice, payday super tracked to the day it is due, band splits kept private and receipts filed for tax time.",
       "isPartOf": { "@id": "https://gigfee.tones-au.com/#website" },
       "about": { "@id": "https://gigfee.tones-au.com/#app" },
       "primaryImageOfPage": "https://gigfee.tones-au.com/assets/og-card.png",
@@ -87,7 +95,18 @@
   "installUrl": "https://play.google.com/store/apps/details?id=com.stagefee.stagefee",
   "downloadUrl": "https://play.google.com/store/apps/details?id=com.stagefee.stagefee",
   "inLanguage": "en-AU",
-  "description": "GigFee turns a gig into a tax invoice from your phone. Built for Australian musicians: ABN and GST on the invoice, superannuation tracked against the gigs that attract it, and band fee splits kept private.",
+  "description": "GigFee turns a gig into a tax invoice from your phone. Built for Australian musicians: ABN and GST on the invoice, a payday super ledger that counts business days properly, band fee splits kept off the client's copy, and expenses filed with their receipts.",
+  "featureList": [
+    "Tax invoices with your ABN checked and GST handled either way",
+    "A payday super ledger: seven business days, twenty for a first contribution, weekends and national public holidays counted",
+    "The super guarantee rate for each gig's own financial year",
+    "Super shown on top of a fee or taken out of one",
+    "Band fee splits that never appear on the client's invoice",
+    "Expenses by category with a photo or PDF of every receipt",
+    "A gig diary that carries through to what you are owed",
+    "Reports and spreadsheet export for your accountant",
+    "Cloud backup you switch on, stored in Australia"
+  ],
   "image": "https://gigfee.tones-au.com/assets/og-card.png",
   "screenshot": [
     "https://gigfee.tones-au.com/assets/screen-dashboard.png",
@@ -137,175 +156,196 @@
 
 <style>
   /* Landing page layout. Shared tokens, typography, masthead, buttons and
-     footer live in assets/site.css. */
+     footer live in assets/site.css.
 
-  .hero {
-    background: linear-gradient(160deg, var(--hero-from), var(--hero-to));
-    color: var(--hero-body);
-    overflow: hidden;
-  }
+     The whole page is one ledger: hairline rules mark a change of subject,
+     and there is no stack of shadowed cards. That is the same discipline the
+     app's own invoice uses, and it is what keeps a page about tax paperwork
+     from reading as a novelty app. */
+
+  /* ---------------------------------------------------------------- hero */
+
+  .hero { padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(3rem, 6vw, 4.5rem); }
   .hero .shell {
-    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center;
-    padding-top: 4.5rem; padding-bottom: 4.5rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
   }
-  .hero h1 { color: var(--hero-ink); }
-  .hero .lead { font-size: 1.16rem; max-width: 34rem; color: var(--hero-body); }
-  .hero-shot { justify-self: center; max-width: 300px; width: 100%; }
-  .hero-shot img {
-    border-radius: 26px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
-  }
-  @media (max-width: 52rem) {
-    .hero .shell { grid-template-columns: 1fr; gap: 2.5rem; padding-top: 3rem; padding-bottom: 3rem; }
-    .hero-shot { max-width: 260px; }
+  .hero h1 { margin-bottom: 1.1rem; }
+  .hero .lead {
+    font-size: 1.16rem; line-height: 1.55; max-width: 32rem;
+    color: var(--body); margin-bottom: 0;
   }
 
-  .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.6rem; }
-  .btn-primary { background: #ffffff; color: #2b1f70; }
-  .btn-primary:hover { background: #efedff; }
-  .btn-ghost { border-color: rgba(255, 255, 255, 0.34); color: #ffffff; }
-  .btn-ghost:hover { border-color: #ffffff; }
-
-  section { padding: 4.5rem 0; }
-  .section-head { max-width: 40rem; margin-bottom: 3rem; }
-  .section-head p { color: var(--muted); margin-bottom: 0; }
-
-  .feature {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 3.5rem; align-items: center; margin-bottom: 4.5rem;
+  /* One badge and one line of text, laid out as a row rather than a rigid
+     grid. The grid that used to be here pinned two badges to fixed columns
+     and spanned a third button across both, which is what left the cluster
+     sitting off-centre against everything else on the page. */
+  .actions {
+    display: flex; flex-wrap: wrap; align-items: center;
+    gap: 0.9rem 1.25rem; margin-top: 1.9rem;
   }
-  .feature:last-child { margin-bottom: 0; }
-  .feature.flip .feature-shot { order: -1; }
-  .feature-shot { justify-self: center; max-width: 280px; width: 100%; }
-  .feature-shot img {
-    border-radius: 22px; border: 1px solid var(--line);
-    box-shadow: 0 18px 40px var(--shadow);
-  }
-  .feature h3 { margin-bottom: 0.5rem; }
-  .feature p:last-child { margin-bottom: 0; }
-  @media (max-width: 52rem) {
-    .feature { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 3.5rem; }
-    .feature.flip .feature-shot { order: 0; }
-    .feature-shot { max-width: 240px; }
-  }
+  .soon-note { font-size: 0.95rem; color: var(--muted); margin: 0; }
+  .soon-note b { color: var(--body); font-weight: 600; }
 
-  .tick { list-style: none; padding: 0; margin: 1.1rem 0 0; }
-  .tick li { position: relative; padding-left: 1.75rem; margin-bottom: 0.55rem; }
-  .tick li::before {
-    content: ""; position: absolute; left: 0; top: 0.62em;
-    width: 0.72rem; height: 0.38rem;
+  /* The plain facts, on one rule under the ask. Each is a reason somebody
+     installs this rather than something else. */
+  .hero-facts {
+    display: flex; flex-wrap: wrap; gap: 0.55rem 1.5rem;
+    margin: 1.9rem 0 0; padding: 1.1rem 0 0;
+    border-top: 1px solid var(--line);
+    list-style: none;
+    font-size: 0.95rem; color: var(--muted);
+  }
+  .hero-facts li { position: relative; padding-left: 1.15rem; }
+  .hero-facts li::before {
+    content: ""; position: absolute; left: 0; top: 0.68em;
+    width: 0.62rem; height: 0.32rem;
     border-left: 2px solid var(--violet); border-bottom: 2px solid var(--violet);
     transform: rotate(-45deg);
   }
 
-  .panel { background: var(--panel); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .plainly { margin: 0; max-width: 44rem; }
-  .plainly dt {
-    font-weight: 600; color: var(--ink); font-size: 1.05rem;
-    margin-top: 1.75rem;
+  /* The phone. The only dark object above the fold, and a real screenshot in
+     a real bezel rather than a rounded rectangle floating in space. */
+  .device { justify-self: center; width: 100%; max-width: 288px; margin: 0; }
+  .device .bezel {
+    background: var(--slate);
+    border-radius: 30px;
+    padding: 9px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset,
+                0 24px 48px -12px var(--shadow);
   }
-  .plainly dt:first-of-type { margin-top: 0; }
-  .plainly dd {
-    margin: 0.3rem 0 0; color: var(--muted); max-width: 40rem;
-  }
-
-  .panel-note { margin-top: 2.5rem; margin-bottom: 0; }
-
-  /* Google Play badge.
-     Google's brand guidelines require the supplied asset unmodified, with
-     clear space around it and a minimum height, so it is sized rather than
-     restyled: no border, no filter, no recolour. 40px tall is comfortably
-     above the 40dp floor. The link wrapper carries the tap target. */
-  .play-badge {
-    display: inline-block;
-    line-height: 0;
-    border-radius: 8px;
-  }
-  /* Google's asset carries 41px of mandatory clear space on every side,
-     baked into the PNG: the visible badge is 564x168 inside 646x250. Sized
-     naively to 54px it draws a 34px badge floating in invisible margin,
-     which is why it never lined up with anything. 80px of image is 54px of
-     badge, and the negative margin hands the baked-in clear space back to
-     the layout so the row's gap is the real gap. */
-  .play-badge { --badge-h: 52px; }
-  .play-badge img {
-    height: calc(var(--badge-h) * 1.4881); /* 250/168: asset over visible */
-    width: auto;
-    margin: calc(var(--badge-h) * -0.2440); /* the baked 41px, scaled */
-  }
-  .play-badge:focus-visible {
-    outline: 2px solid var(--amber); outline-offset: 3px;
+  .device img { border-radius: 22px; display: block; }
+  .device figcaption {
+    margin-top: 0.85rem; font-size: 0.88rem; color: var(--muted);
+    text-align: center;
   }
 
+  @media (max-width: 54rem) {
+    .hero .shell { grid-template-columns: 1fr; }
+    .device { max-width: 256px; }
+    .hero .lead { max-width: none; }
+  }
 
-  /* The App Store badge, matched to Google's: same height, same 8px
-     radius, black ground, hairline border, glyph left and two-line text
-     right - the geometry every store badge shares, so the pair reads as a
-     set. The apple is Font Awesome's brand glyph (CC BY 4.0). Two variants
-     behind html[data-appstore]: "soon" is unlinked and says "Coming soon on
-     the"; "live" links and says "Download on the". The inactive one is
-     display:none, so soon can never be tapped and live never reads dead. */
-  .store-row { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
-  .midway-cta .store-row { justify-content: center; }
-  .actions {
-    display: grid;
-    grid-template-columns: repeat(2, calc(52px * 3.357));
-    gap: 0.5rem;
-    justify-content: start;
-    align-items: center;
+  /* ------------------------------------------------------------ sections */
+
+  .band { border-top: 1px solid var(--line); padding: clamp(3rem, 6vw, 4.75rem) 0; }
+  .band.tint { background: var(--panel); }
+  .section-head { max-width: var(--measure); margin-bottom: 2.5rem; }
+  .section-head p:last-child { margin-bottom: 0; }
+  .section-head .dek {
+    font-size: 1.12rem; color: var(--body); font-weight: 400; margin-bottom: 0;
   }
-  .actions .btn-ghost {
-    grid-column: 1 / -1;
-    box-sizing: border-box;
-    height: 52px;
-    display: flex; align-items: center; justify-content: center;
-    padding: 0; margin: 0;
+
+  /* A feature: words on one side, the phone or the sums on the other. */
+  .split {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 3.5rem); align-items: center;
   }
-  .appstore-badge {
-    --badge-h: 52px;
-    box-sizing: border-box;
-    display: inline-flex; align-items: center; justify-content: center;
-    gap: 0.55rem;
-    width: calc(var(--badge-h) * 3.357); /* 564/168: the Play badge's ratio */
-    height: var(--badge-h);
-    border-radius: 8px;
-    background: #000; border: 1px solid #a6a6a6;
-    color: #fff; text-decoration: none; line-height: 1;
+  .split.narrow { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); }
+  .split.flip > :last-child { order: -1; }
+  .split h3 { margin-bottom: 0.55rem; }
+  .split p:last-child { margin-bottom: 0; }
+  @media (max-width: 54rem) {
+    .split, .split.narrow { grid-template-columns: 1fr; }
+    .split.flip > :last-child { order: 0; }
   }
-  .appstore-badge svg { height: 23px; width: auto; fill: #fff; flex: none; }
-  .appstore-badge .ab-small { display: block; font-size: 8px; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 3px; }
-  .appstore-badge .ab-big { display: block; font-size: 21px; font-weight: 600; letter-spacing: -0.01em; }
-  .appstore-badge.appstore-soon { cursor: default; }
-  .appstore-badge:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+
+  /* For the things that do not need a picture each. */
+  .trio {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 2rem 2.5rem; margin: 0; padding: 0; list-style: none;
+  }
+  .trio > li { border-top: 1px solid var(--line); padding-top: 1.1rem; }
+  .trio h3 { font-size: 1.05rem; margin-bottom: 0.35rem; }
+  .trio p { margin: 0; font-size: 0.99rem; color: var(--muted); }
+
+  .tick { list-style: none; padding: 0; margin: 1.2rem 0 0; }
+  .tick li { position: relative; padding-left: 1.7rem; margin-bottom: 0.6rem; }
+  .tick li:last-child { margin-bottom: 0; }
+  .tick li::before {
+    content: ""; position: absolute; left: 0; top: 0.6em;
+    width: 0.72rem; height: 0.38rem;
+    border-left: 2px solid var(--violet); border-bottom: 2px solid var(--violet);
+    transform: rotate(-45deg);
+  }
+  .tick b { color: var(--ink); font-weight: 600; }
+
+  /* The deadline strip. The two business-day counts side by side, because
+     the difference between them is the thing people get wrong. */
+  .deadlines {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 1.5rem; margin: 2.5rem 0 0; padding: 0; list-style: none;
+  }
+  .deadlines > li { border-top: 1px solid var(--line-strong); padding-top: 0.9rem; }
+  .deadlines .n {
+    display: block; font-family: var(--f-fig); font-weight: 600;
+    font-size: 2.5rem; line-height: 1; color: var(--ink);
+    font-variant-numeric: tabular-nums; letter-spacing: -0.01em;
+  }
+  .deadlines .n small { font-size: 0.95rem; font-weight: 500; color: var(--muted); }
+  .deadlines p { margin: 0.5rem 0 0; font-size: 0.96rem; color: var(--muted); }
+
+  /* Privacy, as a definition list on rules. */
+  .plainly { margin: 0; max-width: var(--measure); }
+  .plainly > div { border-top: 1px solid var(--line); padding: 1.2rem 0; }
+  .plainly > div:last-child { border-bottom: 1px solid var(--line); }
+  .plainly dt { font-weight: 600; color: var(--ink); font-size: 1.05rem; }
+  .plainly dd { margin: 0.3rem 0 0; color: var(--muted); }
+
+  .panel-note { margin: 2.25rem 0 0; max-width: var(--measure); }
+
+  /* ------------------------------------------------------- the last ask */
+
+  /* Inverted, and at the end. A page that opens on a slab of colour is
+     selling; a page that closes on one has finished explaining itself. */
+  .closing {
+    background: var(--slate); color: var(--slate-body);
+    padding: clamp(3rem, 6vw, 4.75rem) 0;
+  }
+  .closing h2 { color: var(--slate-ink); }
+  .closing .shell {
+    display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: clamp(2rem, 5vw, 3.5rem); align-items: start;
+  }
+  .closing .kicker { color: var(--slate-body); }
+  .closing a { color: #fff; }
+  .closing .soon-note { color: var(--slate-body); }
+  .closing .soon-note b { color: #fff; }
+  .closing .fineprint { font-size: 0.93rem; color: var(--slate-body); margin: 1.4rem 0 0; }
+
+  /* What each tier costs, on rules, in the figure face. */
+  .tiers { margin: 0; padding: 0; list-style: none; }
+  .tiers > div {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 1.5rem;
+    border-top: 1px solid var(--slate-line); padding: 0.95rem 0;
+  }
+  .tiers > div:last-child { border-bottom: 1px solid var(--slate-line); }
+  .tiers dt { color: #fff; font-weight: 600; margin: 0; }
+  .tiers dt small {
+    display: block; font-weight: 400; color: var(--slate-body);
+    font-size: 0.9rem; line-height: 1.45; margin-top: 0.15rem;
+  }
+  .tiers dd {
+    margin: 0;
+    font-family: var(--f-fig); font-variant-numeric: tabular-nums;
+    font-weight: 600; color: #fff; white-space: nowrap; font-size: 1.15rem;
+  }
+  .tiers dd small { color: var(--slate-body); font-weight: 500; font-size: 0.8rem; }
+
+  @media (max-width: 54rem) {
+    .closing .shell { grid-template-columns: 1fr; }
+  }
+
+  /* The App Store switch. While it says "soon" the badge is not in the
+     document's flow at all, so there is nothing to mis-align and nothing to
+     tap. See the note at the top of this file. */
   html[data-appstore="soon"] .appstore-live { display: none; }
   html[data-appstore="live"] .appstore-soon { display: none; }
-  .actions { align-items: center; }
-
-  /* The second ask, placed where somebody has just finished reading what the
-     app does and is deciding. */
-  .midway-cta {
-    display: flex; flex-wrap: wrap; gap: 1.25rem;
-    align-items: center; justify-content: center;
-    text-align: center;
-    padding: 0 0 4.5rem;
-  }
-  .midway-cta p {
-    margin: 0; font-size: 1.15rem; font-weight: 600; color: var(--ink);
-  }
-
-  .availability .play-badge { margin: 0.5rem 0 1rem; }
-  .fineprint { font-size: 0.95rem; color: var(--muted); }
-
-  .availability {
-    border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 2.25rem; background: var(--page);
-    display: grid; grid-template-columns: 64px 1fr; gap: 1.5rem; align-items: start;
-  }
-  .availability > img { width: 64px; height: 64px; border-radius: 16px; }
-  .availability h2 { margin-bottom: 0.5rem; }
-  .availability p:last-of-type { margin-bottom: 0; }
-  @media (max-width: 40rem) { .availability { grid-template-columns: 1fr; padding: 1.75rem; } }
+  .appstore-live { line-height: 0; }
+  .appstore-live img { height: 54px; width: auto; }
 </style>
 </head>
 <body>
@@ -317,11 +357,12 @@
       <span>Gig<b>Fee</b></span>
     </a>
     <nav>
+      <a href="#super">Super</a>
+      <a href="#invoices">Invoices</a>
+      <a href="#money">Money</a>
       <a href="/guides/">Guides</a>
-      <a href="#features">Features</a>
       <a href="#privacy">Privacy</a>
       <a href="#get">Get the app</a>
-      <a href="mailto:admin@tones-au.com">Support</a>
     </nav>
   </div>
 </header>
@@ -329,183 +370,366 @@
 <div class="hero">
   <div class="shell">
     <div>
-      <h1>The gig is done. The invoice takes a minute.</h1>
+      <p class="kicker">For Australian musicians</p>
+      <h1>Every gig leaves paperwork. GigFee does it on the way home.</h1>
       <p class="lead">
-        Built for Australian musicians. GigFee raises a proper tax invoice
-        from your phone, with the ABN checked, the GST worked out and
-        superannuation shown the way a performer's invoice should show it. You
-        can send it before you have packed the car.
+        A proper tax invoice from your phone, with your ABN checked and the
+        GST worked out. Payday super tracked to the day it is due. The band's
+        split kept off the client's copy, and receipts filed while you still
+        have them.
       </p>
       <div class="actions">
         <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.stagefee.stagefee">
           <img src="assets/google-play-badge.png" alt="Get it on Google Play" width="646" height="250">
         </a>
-        <span class="appstore-badge appstore-soon" aria-label="Coming soon on the App Store">
-          <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.9-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-          <span><span class="ab-small">Coming soon on the</span><span class="ab-big">App Store</span></span>
-        </span><a class="appstore-badge appstore-live" href="https://apps.apple.com/au/app/id6806688513" aria-label="Download on the App Store">
-          <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.9-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-          <span><span class="ab-small">Download on the</span><span class="ab-big">App Store</span></span>
+        <p class="soon-note appstore-soon"><b>iPhone</b> version in the works</p>
+        <a class="appstore-live" href="https://apps.apple.com/au/app/id6806688513">
+          <img src="assets/app-store-badge.svg" alt="Download on the App Store" width="119" height="40">
         </a>
-        <a class="btn btn-ghost" href="#features">See what it does</a>
       </div>
+      <ul class="hero-facts">
+        <li>No account to create</li>
+        <li>Nothing tracked</li>
+        <li>Works with no signal</li>
+      </ul>
     </div>
-    <div class="hero-shot">
-      <picture>
-        <source srcset="assets/screen-dashboard.webp" type="image/webp">
-        <img src="assets/screen-dashboard.png" width="640" height="1357"
-             alt="The GigFee home screen showing money owed, the next gig and projected earnings.">
-      </picture>
-    </div>
+    <figure class="device">
+      <div class="bezel">
+        <picture>
+          <source srcset="assets/screen-dashboard.webp" type="image/webp">
+          <img src="assets/screen-dashboard.png" width="640" height="1357"
+               alt="The GigFee home screen showing money owed, the next gig and a button to raise its invoice.">
+        </picture>
+      </div>
+      <figcaption>The home screen, on the morning after.</figcaption>
+    </figure>
   </div>
 </div>
 
-<section id="features">
+<!-- The super manager, first and given the most room. It is the reason
+     people arrive: nothing else on a phone does it, and the rules moved. -->
+<section id="super" class="band tint">
   <div class="shell">
     <div class="section-head">
-      <h2>Made for the way gigs actually work</h2>
-      <p>
-        Every part of GigFee came from a real piece of paperwork that musicians
-        end up doing at midnight, on a phone, in a car park.
+      <p class="kicker">The super manager</p>
+      <h2>Payday super, counted to the day it is due</h2>
+      <p class="dek">
+        Contributions have to reach a fund within seven business days of the
+        fee being paid, and twenty for the first one you ever make for a
+        person. GigFee counts those days the way the ATO counts them, keeps a
+        ledger of who is owed what, and stamps every invoice with the rate
+        for its own financial year.
       </p>
     </div>
 
-    <div class="feature">
+    <div class="split narrow">
       <div>
-        <h3>Invoices that hold up</h3>
-        <p>
-          An invoice a venue's bookkeeper can pay without sending it back. GigFee
-          gets the details right so you do not have to keep them in your head.
-        </p>
         <ul class="tick">
-          <li>Correct Tax Invoice heading, with your ABN checked as you type</li>
-          <li>GST handled whether your prices include it or not</li>
-          <li>Superannuation for performers shown properly rather than guessed at</li>
-          <li>A professional PDF, emailed or shared straight from your phone</li>
+          <li>
+            <b>Business days, properly counted.</b> Weekends and national
+            public holidays both push the date out, so a gig played at
+            Christmas does not quietly fall due on Boxing Day.
+          </li>
+          <li>
+            <b>Twenty days for a person's first contribution</b>, seven after
+            that, tracked per person rather than per invoice.
+          </li>
+          <li>
+            <b>Last year's rate on last year's invoices.</b> The rate comes
+            from the invoice date, so reopening an old one does not rewrite
+            what a client was sent.
+          </li>
+          <li>
+            <b>On top of the fee, or inside it.</b> Both are real
+            arrangements, and the app does the arithmetic either way.
+          </li>
+          <li>
+            <b>A door deal or a private household owes none.</b> Mark it and
+            no figure is produced, whatever the rate says.
+          </li>
+          <li>
+            <b>A ledger, not a reminder.</b> Every contribution, what has
+            been paid, what is late, and which payment covered it.
+          </li>
         </ul>
       </div>
-      <div class="feature-shot">
-        <picture>
-          <source srcset="assets/screen-reports.webp" type="image/webp">
-          <img src="assets/screen-reports.png" width="640" height="1357"
-               alt="The reports screen showing outstanding, overdue, paid and invoiced totals for the financial year.">
-        </picture>
-      </div>
-    </div>
 
-    <div class="feature flip">
-      <div>
-        <h3>Split a fee without airing it</h3>
-        <p>
-          Divide a night's money between the band equally, by percentage, or by
-          set amounts. The client is still billed once for the full fee, and none
-          of the split appears on the invoice they receive.
+      <div class="sums">
+        <h4>A $500 Saturday, GST registered</h4>
+        <dl>
+          <div class="row"><dt>Fee, ex GST</dt><dd>$500.00</dd></div>
+          <div class="row"><dt>GST</dt><dd>$50.00</dd></div>
+          <div class="row total"><dt>The client pays</dt><dd>$550.00</dd></div>
+        </dl>
+        <div class="aside">
+          <dl>
+            <div class="row">
+              <dt>Super at 12% of the fee
+                <span class="whose">Paid to your fund by whoever booked you</span>
+              </dt>
+              <dd>$60.00</dd>
+            </div>
+          </dl>
+        </div>
+        <p class="note-row">
+          Worked out on the fee with the GST taken off, and deliberately
+          outside the total: it is not money added to the invoice, which is
+          the part most people have to check twice.
         </p>
-        <p>
-          GigFee keeps track of who you still owe, so money that only passed
-          through your account on its way to someone else does not end up counted
-          as your income.
-        </p>
-      </div>
-      <div class="feature-shot">
-        <picture>
-          <source srcset="assets/screen-split.webp" type="image/webp">
-          <img src="assets/screen-split.png" width="640" height="1357"
-               alt="The fee split screen dividing a $1,200 fee four ways between band members.">
-        </picture>
       </div>
     </div>
 
-    <div class="feature">
-      <div>
-        <h3>Know what you are owed</h3>
-        <p>
-          A gig diary that carries through to the money. Bring bookings in from
-          your phone's calendar, see what is coming up, and find the gigs you
-          played but never invoiced.
-        </p>
-        <ul class="tick">
-          <li>Projected earnings for the month or the financial year</li>
-          <li>Due date reminders, so chasing is not left to memory</li>
-          <li>Recurring invoices for a residency</li>
-          <li>Reports and spreadsheet export your accountant can work from</li>
-        </ul>
-      </div>
-      <div class="feature-shot">
-        <picture>
-          <source srcset="assets/screen-gigs.webp" type="image/webp">
-          <img src="assets/screen-gigs.png" width="640" height="1357"
-               alt="The gig diary showing bookings ahead and gigs played but not yet invoiced.">
-        </picture>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="shell">
-  <div class="midway-cta">
-    <p>Free to start. No account, no card.</p>
-    <div class="store-row"><a class="play-badge" href="https://play.google.com/store/apps/details?id=com.stagefee.stagefee">
-      <img src="assets/google-play-badge.png" alt="Get it on Google Play" width="646" height="250">
-    </a>
-    <span class="appstore-badge appstore-soon" aria-label="Coming soon on the App Store">
-          <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.9-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-          <span><span class="ab-small">Coming soon on the</span><span class="ab-big">App Store</span></span>
-        </span><a class="appstore-badge appstore-live" href="https://apps.apple.com/au/app/id6806688513" aria-label="Download on the App Store">
-          <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.9-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-          <span><span class="ab-small">Download on the</span><span class="ab-big">App Store</span></span>
-        </a></div>
-  </div>
-</div>
-
-<section id="privacy" class="panel">
-  <div class="shell">
-    <div class="section-head">
-      <h2>Your books stay yours</h2>
-      <p>
-        Your invoices carry your clients' details and everything you earn. That is
-        not something to hand over lightly, so GigFee is built not to ask for it.
-      </p>
-    </div>
-
-    <dl class="plainly">
-      <dt>No account</dt>
-      <dd>
-        Install it and start invoicing. There is no sign-up, and you can use
-        GigFee for years without ever telling us who you are.
-      </dd>
-
-      <dt>No tracking</dt>
-      <dd>
-        No analytics, no advertising, no third party trackers. Nothing in here
-        watches how you use it.
-      </dd>
-
-      <dt>Backup is yours to switch on</dt>
-      <dd>
-        Cloud backup stays off until you turn it on. When you do, the copy is
-        stored in Australia and readable only by the account you signed in
-        with. Your phone also keeps its own copy through Android's backup,
-        which is covered in the policy.
-      </dd>
-    </dl>
+    <ul class="deadlines">
+      <li>
+        <span class="n">7 <small>business days</small></span>
+        <p>From the day you are paid, for every contribution after the first.</p>
+      </li>
+      <li>
+        <span class="n">20 <small>business days</small></span>
+        <p>For the first contribution you ever make for a given person.</p>
+      </li>
+      <li>
+        <span class="n">12<small>%</small></span>
+        <p>The super guarantee rate for 2025&ndash;26 and 2026&ndash;27.</p>
+      </li>
+    </ul>
 
     <p class="panel-note">
-      The full detail is in the <a href="privacy-policy.html">privacy policy</a>,
-      including <a href="privacy-policy.html#delete-my-data">how to delete everything</a>
-      if you decide you are done.
+      If you would rather read the rules than take our word for it, the
+      <a href="/guides/">five guides</a> work the sums through and name every
+      source, including <a href="/guides/payday-super-for-musicians/">what
+      payday super does to a $300 pub gig</a> and
+      <a href="/guides/band-leader-super-and-splits/">who owes it when you
+      invoice for the whole band</a>.
     </p>
   </div>
 </section>
 
-<section id="guides">
+<section id="invoices" class="band">
   <div class="shell">
     <div class="section-head">
-      <h2>The super rules changed on 1 July. Here is what that means for you.</h2>
-      <p>
-        Since payday super started, the money owed on your gigs has to be in
-        your fund within seven business days. We wrote the explanations we kept
-        being asked for, with the sums worked through and the sources named.
+      <p class="kicker">The invoice</p>
+      <h2>One a bookkeeper can pay without sending it back</h2>
+      <p class="dek">
+        Every part of GigFee came from a real piece of paperwork somebody ends
+        up doing at midnight, on a phone, in a car park.
+      </p>
+    </div>
+
+    <div class="split">
+      <div>
+        <ul class="tick">
+          <li>The correct <b>Tax Invoice</b> heading, with your ABN checked
+            against the register as you type it</li>
+          <li>GST handled whether your prices include it or not, and left off
+            entirely when you are not registered</li>
+          <li>Superannuation set out the way a performer's invoice should set
+            it out, rather than guessed at</li>
+          <li>A clean PDF, emailed or shared straight from your phone, with
+            your own logo on it</li>
+          <li>Due date reminders, recurring invoices for a residency, and a
+            record of who has been chased</li>
+        </ul>
+      </div>
+      <figure class="device">
+        <div class="bezel">
+          <picture>
+            <source srcset="assets/screen-gigs.webp" type="image/webp">
+            <img src="assets/screen-gigs.png" width="640" height="1357"
+                 alt="The gig diary showing bookings ahead and gigs played but not yet invoiced.">
+          </picture>
+        </div>
+        <figcaption>The gigs you played, and the ones never invoiced.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="shell">
+    <div class="section-head">
+      <p class="kicker">The band</p>
+      <h2>Split a fee without putting it on the invoice</h2>
+    </div>
+
+    <div class="split flip">
+      <div>
+        <p>
+          Divide a night's money between the band equally, by percentage, or
+          by set amounts. The client is still billed once for the full fee,
+          and none of the split appears on the copy they receive.
+        </p>
+        <p>
+          GigFee tracks who you still owe, so money that only passed through
+          your account on its way to someone else is not counted as your
+          income. Each member's super is worked out against their own share,
+          with their fund details kept alongside it.
+        </p>
+      </div>
+      <figure class="device">
+        <div class="bezel">
+          <picture>
+            <source srcset="assets/screen-split.webp" type="image/webp">
+            <img src="assets/screen-split.png" width="640" height="1357"
+                 alt="The fee split screen dividing a $1,200 fee four ways between band members.">
+          </picture>
+        </div>
+        <figcaption>One fee, four ways, one invoice.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="money" class="band tint">
+  <div class="shell">
+    <div class="section-head">
+      <p class="kicker">Money in, money out</p>
+      <h2>What you spent, with the receipt attached to it</h2>
+      <p class="dek">
+        A deduction you cannot prove is a deduction you do not get. GigFee
+        files the receipt at the moment you buy the thing, which is the only
+        moment you still have it.
+      </p>
+    </div>
+
+    <ul class="trio">
+      <li>
+        <h3>Receipts, filed on the spot</h3>
+        <p>
+          Photograph it, or attach the PDF. The file is copied into the app,
+          so it still opens at tax time even if the original is long gone,
+          and it goes into your backup with everything else.
+        </p>
+      </li>
+      <li>
+        <h3>Categorised for the return</h3>
+        <p>
+          Gear, strings, rehearsal rooms, fuel, travel, phone, software,
+          promotion, lessons, insurance, stage clothing, wear and tear. Added
+          up by category in Reports and in your spreadsheet export.
+        </p>
+      </li>
+      <li>
+        <h3>Cash recorded as cash</h3>
+        <p>
+          Say how an invoice was paid and see the year's cash income as its
+          own figure. Cash income is income, and every report here counts it
+          as such.
+        </p>
+      </li>
+      <li>
+        <h3>Off the books, on the record</h3>
+        <p>
+          Mark a gig off the books and GigFee stops asking you for an
+          invoice. No GST is charged and no super worked out, the fee stays
+          out of the tax figures, and it is still reported under its own
+          heading so nothing goes missing.
+        </p>
+      </li>
+      <li>
+        <h3>The diary carries through</h3>
+        <p>
+          Bring bookings in from your phone's calendar, see what is ahead,
+          and find the gigs you played but never invoiced. Projected earnings
+          for the month or the financial year.
+        </p>
+      </li>
+      <li>
+        <h3>A spreadsheet your accountant can use</h3>
+        <p>
+          Invoices issued, bills you were sent and expenses you recorded, a
+          table each with the GST broken out, in CSV or Excel. With every
+          invoice PDF in the same archive if you want them.
+        </p>
+      </li>
+    </ul>
+
+    <div class="split flip" style="margin-top: 3rem">
+      <div>
+        <h3>The figures you carry to your accountant</h3>
+        <p>
+          GST collected and GST paid, super shown against the gigs that
+          attracted it, deductions by category, and the travel claim worked
+          out at the rate each trip was entered at. By financial year, by
+          quarter, or across the lot.
+        </p>
+        <p>
+          Whether a particular amount is business income, or a particular
+          purchase deductible, is your call and your accountant's. GigFee
+          keeps the record and does the arithmetic. It does not make that
+          judgement for you, and it says so where that matters.
+        </p>
+      </div>
+      <figure class="device">
+        <div class="bezel">
+          <picture>
+            <source srcset="assets/screen-reports.webp" type="image/webp">
+            <img src="assets/screen-reports.png" width="640" height="1357"
+                 alt="The reports screen showing outstanding, overdue, paid and invoiced totals for the financial year.">
+          </picture>
+        </div>
+        <figcaption>What the year comes to, by financial year.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="privacy" class="band">
+  <div class="shell">
+    <div class="section-head">
+      <p class="kicker">Privacy</p>
+      <h2>Your books stay yours</h2>
+      <p class="dek">
+        Your invoices carry your clients' details and everything you earn.
+        That is not something to hand over lightly, so GigFee is built not to
+        ask for it.
+      </p>
+    </div>
+
+    <dl class="plainly">
+      <div>
+        <dt>No account</dt>
+        <dd>
+          Install it and start invoicing. There is no sign-up, and you can use
+          GigFee for years without ever telling us who you are.
+        </dd>
+      </div>
+      <div>
+        <dt>No tracking</dt>
+        <dd>
+          No analytics, no advertising, no third party trackers. Nothing in
+          here watches how you use it.
+        </dd>
+      </div>
+      <div>
+        <dt>Backup is yours to switch on</dt>
+        <dd>
+          Cloud backup stays off until you turn it on. When you do, the copy
+          is stored in Australia and readable only by the account you signed
+          in with. Your phone also keeps its own copy through Android's
+          backup, which is covered in the policy.
+        </dd>
+      </div>
+    </dl>
+
+    <p class="panel-note">
+      The full detail is in the <a href="privacy-policy.html">privacy
+      policy</a>, including
+      <a href="privacy-policy.html#delete-my-data">how to delete
+      everything</a> if you decide you are done.
+    </p>
+  </div>
+</section>
+
+<section id="guides" class="band">
+  <div class="shell">
+    <div class="section-head">
+      <p class="kicker">The guides</p>
+      <h2>The super rules moved. Here is what that means for you.</h2>
+      <p class="dek">
+        We wrote the explanations we kept being asked for, with the sums
+        worked through, every source named, and the date each page was last
+        checked against it.
       </p>
     </div>
 
@@ -537,49 +761,57 @@
     </ul>
 
     <p class="panel-note">
-      <a href="/guides/">All five guides</a>, including what a venue needs from
-      you before it can pay your super, and how sole traders, partnerships and
-      companies are each treated.
+      <a href="/guides/">All five guides</a>, including what a venue needs
+      from you before it can pay your super, and how sole traders,
+      partnerships and companies are each treated.
     </p>
   </div>
 </section>
 
-<section id="get">
+<section id="get" class="closing">
   <div class="shell">
-    <div class="availability">
-      <img src="assets/gigfee-icon.png" alt="">
-      <div>
-        <h2>Get GigFee</h2>
-        <p>
-          Free to use for as long as you like, with no account and no card.
-          Every invoice, no limits. The ones you send carry a GigFee watermark
-          until you decide to remove it.
-        </p>
-        <p>
-          Premium adds cloud backup, reports and super tracking, and it is
-          free for the first 7 days. It is a subscription because the backup
-          is storage somebody pays for every month, and that somebody should
-          not be you by surprise: cancel before the trial ends and you are
-          not charged.
-        </p>
-        <div class="store-row"><a class="play-badge" href="https://play.google.com/store/apps/details?id=com.stagefee.stagefee">
+    <div>
+      <p class="kicker">Get the app</p>
+      <h2>Free to start. No account, no card.</h2>
+      <p>
+        Every invoice, no limits, for as long as you like. The ones you send
+        carry a GigFee watermark until you decide to remove it.
+      </p>
+      <p>
+        Premium is a subscription because cloud backup is storage somebody
+        pays for every month, and that somebody should not be you by
+        surprise. Cancel inside the first week and you are not charged.
+      </p>
+      <div class="actions">
+        <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.stagefee.stagefee">
           <img src="assets/google-play-badge.png" alt="Get it on Google Play" width="646" height="250">
         </a>
-        <span class="appstore-badge appstore-soon" aria-label="Coming soon on the App Store">
-          <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.9-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-          <span><span class="ab-small">Coming soon on the</span><span class="ab-big">App Store</span></span>
-        </span><a class="appstore-badge appstore-live" href="https://apps.apple.com/au/app/id6806688513" aria-label="Download on the App Store">
-          <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.9-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-          <span><span class="ab-small">Download on the</span><span class="ab-big">App Store</span></span>
-        </a></div>
-        <p class="fineprint">
-          Android phones and tablets<span class="appstore-soon">, with iPhone in
-          review now</span><span class="appstore-live">, iPhone and iPad</span>.
-          Australian tax rules, so it is built for people invoicing in
-          Australia.
-        </p>
+        <p class="soon-note appstore-soon"><b>iPhone</b> version in the works</p>
+        <a class="appstore-live" href="https://apps.apple.com/au/app/id6806688513">
+          <img src="assets/app-store-badge.svg" alt="Download on the App Store" width="119" height="40">
+        </a>
       </div>
+      <p class="fineprint">
+        Android phones and tablets<span class="appstore-live">, iPhone and
+        iPad</span>. Built around Australian tax rules, so it is for people
+        invoicing in Australia.
+      </p>
     </div>
+
+    <dl class="tiers">
+      <div>
+        <dt>Free<small>Unlimited invoices, ten saved clients</small></dt>
+        <dd>$0</dd>
+      </div>
+      <div>
+        <dt>Lite<small>No watermark, unlimited clients, a backup file you keep</small></dt>
+        <dd>$39.99 <small>once</small></dd>
+      </div>
+      <div>
+        <dt>Premium<small>Cloud backup, reports, export, your logo, the super ledger</small></dt>
+        <dd>$9.99 <small>a month</small></dd>
+      </div>
+    </dl>
   </div>
 </section>
 
@@ -593,7 +825,8 @@
       <div class="foot-links">
         <a href="/guides/">Guides</a>
         <a href="https://play.google.com/store/apps/details?id=com.stagefee.stagefee">Google Play</a>
-        <a href="#features">Features</a>
+        <a href="#super">Super</a>
+        <a href="#invoices">Invoices</a>
         <a href="privacy-policy.html">Privacy policy</a>
         <a href="terms.html">Terms of use</a>
         <a href="mailto:admin@tones-au.com">admin@tones-au.com</a>
@@ -601,8 +834,8 @@
     </div>
     <p class="disclaimer">
       GigFee gives general information about tax and superannuation. It is not
-      financial or tax advice, and it is no substitute for an accountant who knows
-      your circumstances.
+      financial or tax advice, and it is no substitute for an accountant who
+      knows your circumstances.
     </p>
     <p class="disclaimer copyright">
       Copyright &copy; 2026 Anthony Collins trading as Tones AU. All rights
